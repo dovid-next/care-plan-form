@@ -1,0 +1,3324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprehensive Care Plan - Complete</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border: 1px solid #ddd;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin: 25px 0 15px 0;
+            color: #555;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 8px;
+        }
+
+        h3 {
+            font-size: 16px;
+            margin: 20px 0 10px 0;
+            color: #666;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 14px;
+        }
+
+        textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        input[type="text"]:focus,
+        input[type="date"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .checkbox-group,
+        .radio-group {
+            margin-top: 8px;
+        }
+
+        .checkbox-item,
+        .radio-item {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            margin-right: 8px;
+            margin-top: 3px;
+        }
+
+        .checkbox-label,
+        .radio-label {
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        .domain-module {
+            background-color: #fafafa;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 20px 0;
+            display: none;
+        }
+
+        .domain-module.active {
+            display: block;
+        }
+
+        .module-header {
+            background-color: #e9e9e9;
+            padding: 10px;
+            margin: -20px -20px 20px -20px;
+            border-bottom: 2px solid #ccc;
+        }
+
+        .module-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .section-divider {
+            border-top: 1px dashed #ccc;
+            margin: 25px 0 20px 0;
+        }
+
+        .helper-text {
+            font-size: 12px;
+            color: #666;
+            font-style: italic;
+            margin-top: 3px;
+        }
+
+        .urgency-header {
+            background-color: #f0f0f0;
+            padding: 8px;
+            margin: 15px 0 10px 0;
+            font-weight: bold;
+            border-left: 4px solid #999;
+        }
+
+        .urgency-header.urgent {
+            border-left-color: #d32f2f;
+            background-color: #ffebee;
+        }
+
+        .urgency-header.important {
+            border-left-color: #f57c00;
+            background-color: #fff3e0;
+        }
+
+        .urgency-header.routine {
+            border-left-color: #1976d2;
+            background-color: #e3f2fd;
+        }
+
+        .conditional-section {
+            display: none;
+        }
+
+        .conditional-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>COMPREHENSIVE CARE PLAN</h1>
+
+        <!-- HEADER -->
+        <div class="form-group">
+            <label>Patient Name</label>
+            <input type="text" placeholder="Patient name">
+        </div>
+
+        <div class="form-group">
+            <label>Visit Date</label>
+            <input type="date">
+        </div>
+
+        <div class="form-group">
+            <label>Facility</label>
+            <input type="text" placeholder="Facility name">
+        </div>
+
+        <div class="form-group">
+            <label>Provider</label>
+            <input type="text" placeholder="Provider name">
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- DOMAIN SELECTION -->
+        <h2>SELECT DOMAINS TO ADDRESS</h2>
+
+        <div class="form-group">
+            <label>Which clinical domains will you address today?</label>
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="domain-hf" onchange="toggleDomain('hf')">
+                    <label for="domain-hf" class="checkbox-label">Heart Failure (HF)</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="domain-ckd" onchange="toggleDomain('ckd')">
+                    <label for="domain-ckd" class="checkbox-label">Chronic Kidney Disease (CKD)</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="domain-dm" onchange="toggleDomain('dm')">
+                    <label for="domain-dm" class="checkbox-label">Diabetes Mellitus (DM)</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="domain-htn" onchange="toggleDomain('htn')">
+                    <label for="domain-htn" class="checkbox-label">Hypertension (HTN)</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="domain-copd" onchange="toggleDomain('copd')">
+                    <label for="domain-copd" class="checkbox-label">COPD</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="domain-cad" onchange="toggleDomain('cad')">
+                    <label for="domain-cad" class="checkbox-label">Coronary Artery Disease (CAD)</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="domain-stroke" onchange="toggleDomain('stroke')">
+                    <label for="domain-stroke" class="checkbox-label">Stroke/CVA History</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="domain-dementia" onchange="toggleDomain('dementia')">
+                    <label for="domain-dementia" class="checkbox-label">Dementia</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="domain-depression" onchange="toggleDomain('depression')">
+                    <label for="domain-depression" class="checkbox-label">Depression/Behavioral Health</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="domain-falls" onchange="toggleDomain('falls')">
+                    <label for="domain-falls" class="checkbox-label">Falls Prevention</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="domain-pharm" onchange="toggleDomain('pharm')">
+                    <label for="domain-pharm" class="checkbox-label">Polypharmacy/Medication Review</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="domain-immun" onchange="toggleDomain('immun')">
+                    <label for="domain-immun" class="checkbox-label">Health Maintenance/Immunizations</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== HEART FAILURE MODULE ========== -->
+        <div id="module-hf" class="domain-module">
+            <div class="module-header">
+                <div class="module-title">HEART FAILURE</div>
+            </div>
+
+            <h3>ASSESSMENT</h3>
+
+            <div class="form-group">
+                <label>Clinical Status:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" name="hf-status" value="stable">
+                        <label class="radio-label">STABLE</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="hf-status" value="stabilizing">
+                        <label class="radio-label">STABILIZING</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="hf-status" value="unstable">
+                        <label class="radio-label">UNSTABLE</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="hf-status" value="improving">
+                        <label class="radio-label">IMPROVING</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="hf-status" value="declining">
+                        <label class="radio-label">DECLINING</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Status Summary (1-2 sentences):</label>
+                <textarea placeholder="Brief clinical summary"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Recent Labs/Vitals:</label>
+                <textarea placeholder="BNP, K+, Cr, eGFR, Weight"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Current Medications & Doses:</label>
+                <textarea placeholder="List current HF medications"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Non-Pharmacologic Interventions:</label>
+                <textarea placeholder="Dietary restrictions, PT, etc."></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <h3>CARE GAPS</h3>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Beta-blocker below target dose</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">ACE-I/ARB not at target dose</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Aldosterone antagonist not started (EF &lt;40%)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">SGLT2 inhibitor not started</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">BNP/NT-proBNP not trended</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Daily weights not documented</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Fluid restriction not ordered</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Sodium restriction (&lt;2g/day) not ordered</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Cardiology follow-up overdue</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">RPM not enrolled</label>
+                    </div>
+                </div>
+            </div>
+
+            <h3>PLAN & RECOMMENDATIONS</h3>
+
+            <div class="urgency-header urgent">URGENT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Order BNP TODAY (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Hospital transfer for acute decompensation (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header important">IMPORTANT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Increase beta-blocker dose (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Increase ACEI/ARB dose (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Consider spironolactone (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Enroll in RPM (RPM Team)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header routine">ROUTINE Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Daily weights protocol (Nursing)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Recheck BMP in 2 weeks (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Care Coordination Details:</label>
+                <textarea placeholder="Team coordination, referrals"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- ========== CKD MODULE ========== -->
+        <div id="module-ckd" class="domain-module">
+            <div class="module-header">
+                <div class="module-title">CHRONIC KIDNEY DISEASE</div>
+            </div>
+
+            <h3>STAGE SELECTION</h3>
+
+            <div class="form-group">
+                <label>CKD Stage:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" name="ckd-stage" value="3a" onchange="toggleCKDStage()">
+                        <label class="radio-label">Stage 3a (GFR 45-59)</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="ckd-stage" value="3b" onchange="toggleCKDStage()">
+                        <label class="radio-label">Stage 3b (GFR 30-44)</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="ckd-stage" value="4" onchange="toggleCKDStage()">
+                        <label class="radio-label">Stage 4 (GFR 15-29)</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="ckd-stage" value="5" onchange="toggleCKDStage()">
+                        <label class="radio-label">Stage 5 (GFR &lt;15 or dialysis)</label>
+                    </div>
+                </div>
+            </div>
+
+            <h3>ASSESSMENT</h3>
+
+            <div class="form-group">
+                <label>Clinical Status:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" name="ckd-status" value="stable">
+                        <label class="radio-label">STABLE</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="ckd-status" value="stabilizing">
+                        <label class="radio-label">STABILIZING</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="ckd-status" value="declining">
+                        <label class="radio-label">DECLINING</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Status Summary (1-2 sentences):</label>
+                <textarea placeholder="Brief clinical summary"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Recent Labs/Vitals:</label>
+                <textarea placeholder="eGFR, Cr, K+, ACR, CBC"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Current Renoprotective Therapy:</label>
+                <textarea placeholder="ACEI/ARB, BP control"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Non-Pharmacologic Interventions:</label>
+                <textarea placeholder="Dietary modifications"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <!-- Stage 3a Gaps -->
+            <div id="ckd-gaps-3a" class="conditional-section">
+                <h3>CARE GAPS (STAGE 3A)</h3>
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">eGFR not monitored q6 months</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">ACR not documented annually</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">ACEI/ARB not optimized</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">BP not at target &lt;140/90</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Nephrotoxins not avoided</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Renal dosing not verified</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Patient education not done</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stage 3b Gaps -->
+            <div id="ckd-gaps-3b" class="conditional-section">
+                <h3>CARE GAPS (STAGE 3B)</h3>
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">ACR not documented</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">KFRE score not calculated</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">eGFR not monitored q3 months</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Sick-day protocol not done</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">SGLT2i not considered</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Anemia screening overdue</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Nephrology not consulted</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Renal dosing not verified</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Vitamin D/PTH not checked</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">K+/phos not monitored q3mo</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stage 4 Gaps -->
+            <div id="ckd-gaps-4" class="conditional-section">
+                <h3>CARE GAPS (STAGE 4)</h3>
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">eGFR not monitored monthly</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Nephrology co-management not established</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Dialysis access planning not discussed</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Anemia (ESA) not managed</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Acidosis not addressed</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Hyperkalemia protocol not in place</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Phosphate binders not optimized</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Advance care planning not done</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Renal diet consult not done</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">CMP not monitored monthly</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stage 5 Gaps -->
+            <div id="ckd-gaps-5" class="conditional-section">
+                <h3>CARE GAPS (STAGE 5)</h3>
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Dialysis not initiated despite uremic symptoms</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Vascular access not placed</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Palliative care not offered</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Volume management inadequate</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Severe hyperkalemia protocol not in place</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Acidosis not managed</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Anemia/ESA optimization not done</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox">
+                            <label class="checkbox-label">Nutritional support inadequate</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>PLAN & RECOMMENDATIONS</h3>
+
+            <div class="urgency-header urgent">URGENT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Order ACR TODAY (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header important">IMPORTANT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Sick-day protocol education (Nursing)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Refer nephrology (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Enroll in RPM (RPM)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header routine">ROUTINE Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Monitor labs per stage (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Pharmacist renal dosing review (Pharmacy)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Care Coordination Details:</label>
+                <textarea placeholder="Team coordination"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- ========== DIABETES MODULE ========== -->
+        <div id="module-dm" class="domain-module">
+            <div class="module-header">
+                <div class="module-title">DIABETES MELLITUS TYPE 2</div>
+            </div>
+
+            <h3>ASSESSMENT</h3>
+
+            <div class="form-group">
+                <label>Clinical Status:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" name="dm-status" value="stable">
+                        <label class="radio-label">STABLE</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="dm-status" value="improving">
+                        <label class="radio-label">IMPROVING</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="dm-status" value="unstable">
+                        <label class="radio-label">UNSTABLE</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="dm-status" value="poorly">
+                        <label class="radio-label">POORLY CONTROLLED</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Status Summary (1-2 sentences):</label>
+                <textarea placeholder="Brief clinical summary"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Recent Labs/Vitals:</label>
+                <textarea placeholder="HbA1c, glucose, ACR"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Current Medications & Doses:</label>
+                <textarea placeholder="Diabetes medications"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Non-Pharmacologic Interventions:</label>
+                <textarea placeholder="Diet, exercise, monitoring"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <h3>CARE GAPS</h3>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">A1c not at individualized goal</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Sliding scale insulin (SSI) not transitioned to basal-bolus</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Complex regimen not simplified (deprescribing opportunity)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Glucose monitoring frequency excessive (>1x daily if stable)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Comprehensive foot exam overdue (>12 months)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Dilated eye exam not documented in past year</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Urine ACR not checked annually</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">GLP-1 agonist not considered (if A1c >8% and no contraindications)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Statin not started (age >40 or CVD risk)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Hypoglycemia protocol not documented</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Sick day medication plan not documented</label>
+                    </div>
+                </div>
+            </div>
+
+            <h3>PLAN & RECOMMENDATIONS</h3>
+
+            <div class="urgency-header urgent">URGENT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Treat severe hypoglycemia (<54 mg/dL) (Nursing/MD)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">STOP SSI immediately if recurrent hypoglycemia (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header important">IMPORTANT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Simplify insulin regimen: transition SSI to basal-only or basal-bolus (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Reduce glucose monitoring to once daily if stable A1c (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Deprescribe unnecessary diabetes medications (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Schedule comprehensive podiatry exam (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Refer ophthalmology for retinal exam (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Consider GLP-1 agonist (semaglutide) if A1c >8% (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Initiate statin therapy if not on one (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header routine">ROUTINE Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Order urine ACR annually (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Document hypoglycemia protocol (Nursing)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Sick day education (hold metformin during illness) (Nursing)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Recheck A1c in 3 months after regimen change (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Endocrine consult for complex regimen simplification (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Care Coordination Details:</label>
+                <textarea placeholder="Team coordination"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+<!-- END OF PART 1 - CONTINUE WITH PART 2 -->
+<!-- ========== HYPERTENSION MODULE ========== -->
+        <div id="module-htn" class="domain-module">
+            <div class="module-header">
+                <div class="module-title">HYPERTENSION</div>
+            </div>
+
+            <h3>ASSESSMENT</h3>
+
+            <div class="form-group">
+                <label>Clinical Status:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" name="htn-status" value="controlled">
+                        <label class="radio-label">CONTROLLED</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="htn-status" value="uncontrolled">
+                        <label class="radio-label">UNCONTROLLED</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="htn-status" value="improving">
+                        <label class="radio-label">IMPROVING</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Status Summary (1-2 sentences):</label>
+                <textarea placeholder="Brief clinical summary"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Recent Labs/Vitals:</label>
+                <textarea placeholder="BP readings, K+, Cr"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Current Medications & Doses:</label>
+                <textarea placeholder="Antihypertensive medications"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Non-Pharmacologic Interventions:</label>
+                <textarea placeholder="Dietary sodium restriction, weight loss"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <h3>CARE GAPS</h3>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">BP persistently above target</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Not on thiazide diuretic</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Not on combination therapy</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">ACEI/ARB not used despite CKD/DM</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">K+/Cr not monitored q3-6mo</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Dietary sodium restriction not ordered</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Orthostatic BP not checked</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">BP monitoring frequency inadequate</label>
+                    </div>
+                </div>
+            </div>
+
+            <h3>PLAN & RECOMMENDATIONS</h3>
+
+            <div class="urgency-header urgent">URGENT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">HTN emergency management if SBP &gt;180 (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header important">IMPORTANT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Add 2nd antihypertensive (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Increase current dose (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Dietary consult for sodium restriction (Dietary)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header routine">ROUTINE Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">BP monitoring twice weekly (Nursing)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Recheck K+/Cr in 2 weeks (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Orthostatic BP assessment (Nursing)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Care Coordination Details:</label>
+                <textarea placeholder="Team coordination"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- ========== COPD MODULE ========== -->
+        <div id="module-copd" class="domain-module">
+            <div class="module-header">
+                <div class="module-title">COPD</div>
+            </div>
+
+            <h3>ASSESSMENT</h3>
+
+            <div class="form-group">
+                <label>Clinical Status:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" name="copd-status" value="stable">
+                        <label class="radio-label">STABLE</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="copd-status" value="exacerbation">
+                        <label class="radio-label">ACUTE EXACERBATION</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="copd-status" value="declining">
+                        <label class="radio-label">DECLINING</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="copd-status" value="improving">
+                        <label class="radio-label">IMPROVING</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Status Summary (1-2 sentences):</label>
+                <textarea placeholder="Brief clinical summary"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Recent Labs/Vitals:</label>
+                <textarea placeholder="SpO2, ABG if available, chest imaging"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Current Medications & Doses:</label>
+                <textarea placeholder="Bronchodilators, ICS, O2"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Non-Pharmacologic Interventions:</label>
+                <textarea placeholder="O2 therapy, pulmonary rehab, smoking cessation"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <h3>CARE GAPS</h3>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Not on LABA/LAMA bronchodilator therapy</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">ICS not added despite ≥2 exacerbations/year</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">O2 therapy not provided despite SpO2 &lt;88-90%</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Pulmonary rehabilitation not referred</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Annual influenza vaccine not given</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Pneumococcal vaccine not documented</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Exacerbation action plan not in place</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Smoking cessation counseling not done (if applicable)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Spirometry baseline not documented</label>
+                    </div>
+                </div>
+            </div>
+
+            <h3>PLAN & RECOMMENDATIONS</h3>
+
+            <div class="urgency-header urgent">URGENT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Prednisone 40mg x 5 days for exacerbation (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Consider antibiotics if purulent sputum (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Hospital transfer if respiratory failure (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header important">IMPORTANT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Initiate LABA/LAMA combination (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Add ICS if frequent exacerbations (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Refer pulmonary rehabilitation (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header routine">ROUTINE Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">O2 therapy, SpO2 monitoring (Nursing)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Inhaler technique education (RT)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Administer flu/pneumococcal vaccines (Nursing)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Document exacerbation action plan (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Care Coordination Details:</label>
+                <textarea placeholder="Team coordination"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- ========== CAD MODULE ========== -->
+        <div id="module-cad" class="domain-module">
+            <div class="module-header">
+                <div class="module-title">CORONARY ARTERY DISEASE (CAD)</div>
+            </div>
+
+            <h3>ASSESSMENT</h3>
+
+            <div class="form-group">
+                <label>Clinical Status:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" name="cad-status" value="stable">
+                        <label class="radio-label">STABLE</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="cad-status" value="unstable">
+                        <label class="radio-label">UNSTABLE ANGINA</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="cad-status" value="postmi">
+                        <label class="radio-label">POST-MI</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="cad-status" value="asymptomatic">
+                        <label class="radio-label">ASYMPTOMATIC</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Status Summary (1-2 sentences):</label>
+                <textarea placeholder="Brief clinical summary"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Recent Labs/Vitals:</label>
+                <textarea placeholder="Lipid panel, troponin if CP, EKG findings"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Current Medications & Doses:</label>
+                <textarea placeholder="Antiplatelet, beta-blocker, statin, ACEI"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Non-Pharmacologic Interventions:</label>
+                <textarea placeholder="Cardiac rehab, lifestyle modifications"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <h3>CARE GAPS</h3>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Aspirin/antiplatelet not started</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Beta-blocker not started post-MI</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">High-intensity statin not started</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">ACEI/ARB not started (if LVEF reduced or HTN/DM)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Lipid panel not checked annually (LDL goal &lt;70)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Nitroglycerin SL PRN not available</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Cardiac rehab not considered post-MI</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Baseline EKG not on file</label>
+                    </div>
+                </div>
+            </div>
+
+            <h3>PLAN & RECOMMENDATIONS</h3>
+
+            <div class="urgency-header urgent">URGENT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Chest pain protocol: NTG, EKG, troponin, transfer (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header important">IMPORTANT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Initiate high-intensity statin (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Start beta-blocker if not on one (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Consider ACEI/ARB if indicated (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Ensure NTG SL available at bedside (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header routine">ROUTINE Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Order lipid panel, target LDL &lt;70 (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Nursing education: angina symptoms, NTG (Nursing)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Baseline EKG if not on file (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Care Coordination Details:</label>
+                <textarea placeholder="Team coordination"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- ========== STROKE MODULE ========== -->
+        <div id="module-stroke" class="domain-module">
+            <div class="module-header">
+                <div class="module-title">STROKE / CVA HISTORY</div>
+            </div>
+
+            <h3>ASSESSMENT</h3>
+
+            <div class="form-group">
+                <label>Clinical Status:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" name="stroke-status" value="stable">
+                        <label class="radio-label">STABLE</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="stroke-status" value="newdeficit">
+                        <label class="radio-label">NEW DEFICIT</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="stroke-status" value="recovering">
+                        <label class="radio-label">RECOVERING</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="stroke-status" value="declining">
+                        <label class="radio-label">DECLINING</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Status Summary (1-2 sentences):</label>
+                <textarea placeholder="Brief clinical summary"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Recent Labs/Vitals:</label>
+                <textarea placeholder="Imaging if new symptoms, lipid panel, BP"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Current Medications & Doses:</label>
+                <textarea placeholder="Antiplatelet, statin, BP meds"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Non-Pharmacologic Interventions:</label>
+                <textarea placeholder="PT/OT/ST, modified diet, fall precautions"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <h3>CARE GAPS</h3>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Aspirin/antiplatelet therapy not started</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Statin therapy not started (moderate-high intensity)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">BP not controlled &lt;140/90</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Carotid imaging not done post-CVA</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Atrial fibrillation screening not done</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Dysphagia screening not done</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">PT/OT/ST not referred for functional recovery</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Fall risk assessment not completed</label>
+                    </div>
+                </div>
+            </div>
+
+            <h3>PLAN & RECOMMENDATIONS</h3>
+
+            <div class="urgency-header urgent">URGENT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Hospital transfer for new stroke symptoms (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header important">IMPORTANT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Initiate antiplatelet therapy (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Start moderate-high intensity statin (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Order carotid duplex ultrasound (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">AFib screening (EKG, telemetry) (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header routine">ROUTINE Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Dysphagia screening, swallow study if needed (ST)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">PT/OT/ST for functional recovery (Therapy)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Fall risk assessment, mobility aids (PT/Nursing)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">BP monitoring, target &lt;140/90 (Nursing)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Care Coordination Details:</label>
+                <textarea placeholder="Team coordination"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+<!-- END OF PART 2 - CONTINUE WITH PART 3 -->
+<!-- ========== DEMENTIA MODULE ========== -->
+        <div id="module-dementia" class="domain-module">
+            <div class="module-header">
+                <div class="module-title">DEMENTIA</div>
+            </div>
+
+            <h3>ASSESSMENT</h3>
+
+            <div class="form-group">
+                <label>Clinical Status:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" name="dementia-status" value="stable">
+                        <label class="radio-label">STABLE</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="dementia-status" value="declining">
+                        <label class="radio-label">DECLINING</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="dementia-status" value="improving">
+                        <label class="radio-label">IMPROVING</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="dementia-status" value="bpsd">
+                        <label class="radio-label">BPSD (agitation/behaviors)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Status Summary (1-2 sentences):</label>
+                <textarea placeholder="Brief clinical summary"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Recent Labs/Vitals:</label>
+                <textarea placeholder="Cognitive assessments, labs for reversible causes"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Current Medications & Doses:</label>
+                <textarea placeholder="Cholinesterase inhibitors, memantine"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Non-Pharmacologic Interventions:</label>
+                <textarea placeholder="Structured activities, safety measures"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <h3>CARE GAPS</h3>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">MMSE or MoCA not done annually</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Reversible causes not ruled out (B12, TSH, RPR)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Non-pharmacologic BPSD interventions not tried first</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Cholinesterase inhibitor not started (if Alzheimer's)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Anticholinergic medications not avoided (Beers Criteria)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Structured activities/life enrichment not in place</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Family/staff education on dementia care not documented</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Safety assessment not done (wandering, elopement)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Antipsychotic use without documented BPSD/GDR attempts</label>
+                    </div>
+                </div>
+            </div>
+
+            <h3>PLAN & RECOMMENDATIONS</h3>
+
+            <div class="urgency-header urgent">URGENT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Rule out delirium (infection, medications, metabolic) (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header important">IMPORTANT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Rule out reversible causes: B12, TSH, RPR (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Initiate cholinesterase inhibitor (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Reduce anticholinergic burden (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Non-pharm BPSD interventions first (Activities/Nursing)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header routine">ROUTINE Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Structured activities, meaningful engagement (Activities)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Safety assessment, wandering precautions (Nursing)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Family/staff dementia care education (Social Work)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Annual cognitive assessment (MMSE/MoCA) (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Care Coordination Details:</label>
+                <textarea placeholder="Team coordination"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- ========== DEPRESSION MODULE ========== -->
+        <div id="module-depression" class="domain-module">
+            <div class="module-header">
+                <div class="module-title">DEPRESSION / BEHAVIORAL HEALTH</div>
+            </div>
+
+            <h3>ASSESSMENT</h3>
+
+            <div class="form-group">
+                <label>Clinical Status:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" name="dep-status" value="unstable">
+                        <label class="radio-label">UNSTABLE</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="dep-status" value="improving">
+                        <label class="radio-label">IMPROVING</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="dep-status" value="stable">
+                        <label class="radio-label">STABLE</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="dep-status" value="remission">
+                        <label class="radio-label">REMISSION</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Status Summary (1-2 sentences):</label>
+                <textarea placeholder="Brief clinical summary"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Recent Labs/Vitals:</label>
+                <textarea placeholder="PHQ-9, GAD-7, labs if starting meds"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Current Medications & Doses:</label>
+                <textarea placeholder="Antidepressants, anxiolytics"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Non-Pharmacologic Interventions:</label>
+                <textarea placeholder="Behavioral activation, counseling, activities"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <h3>CARE GAPS</h3>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">No antidepressant therapy</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Psychiatry consultation not done</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">CoCM not enrolled</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Social isolation not addressed with interventions</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">PHQ-9 not monitored monthly</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">No individualized activity engagement plan</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Suicidal ideation assessment not documented</label>
+                    </div>
+                </div>
+            </div>
+
+            <h3>PLAN & RECOMMENDATIONS</h3>
+
+            <div class="urgency-header urgent">URGENT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Suicide risk assessment - 1:1 observation (Nursing)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header important">IMPORTANT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Refer psychiatry for SSRI evaluation (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Enroll in CoCM (APCM/CoCM)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Behavioral activation - individualized activity plan (CoCM/Activities)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header routine">ROUTINE Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Monthly PHQ-9 monitoring (CoCM)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Structured social engagement interventions (Activities)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Monitor for suicidality, SSRI side effects (Nursing)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Care Coordination Details:</label>
+                <textarea placeholder="Team coordination"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- ========== FALLS MODULE ========== -->
+        <div id="module-falls" class="domain-module">
+            <div class="module-header">
+                <div class="module-title">FALLS PREVENTION</div>
+            </div>
+
+            <h3>ASSESSMENT</h3>
+
+            <div class="form-group">
+                <label>Risk Status:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" name="falls-status" value="high">
+                        <label class="radio-label">HIGH RISK</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="falls-status" value="moderate">
+                        <label class="radio-label">MODERATE RISK</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="falls-status" value="low">
+                        <label class="radio-label">LOW RISK</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Status Summary (1-2 sentences):</label>
+                <textarea placeholder="Fall history, risk factors"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Recent Labs/Vitals:</label>
+                <textarea placeholder="Vitamin D level, BP (orthostatic if applicable)"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Current Medications & Doses:</label>
+                <textarea placeholder="Fall-risk medications"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Non-Pharmacologic Interventions:</label>
+                <textarea placeholder="Assistive devices, environmental modifications"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <h3>CARE GAPS</h3>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Vitamin D dose suboptimal (&lt;2000 units daily)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">PT evaluation not done post-falls</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Vision not assessed (&gt;1 year)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Fall-risk medications not reviewed</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">No assistive device despite balance concerns</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Environmental hazards not addressed</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Nighttime toileting schedule not optimized</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Footwear not evaluated for safety</label>
+                    </div>
+                </div>
+            </div>
+
+            <h3>PLAN & RECOMMENDATIONS</h3>
+
+            <div class="urgency-header urgent">URGENT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Post-fall assessment with injury (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header important">IMPORTANT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Increase vitamin D to 2000 units daily (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">PT evaluation for gait/balance/mobility (PT)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Ophthalmology vision assessment (Specialists)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Review fall-risk medications (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header routine">ROUTINE Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Environmental safety assessment (Nursing)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">PT recommend appropriate assistive device (PT)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Implement scheduled toileting (Nursing)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Evaluate footwear for safety (Nursing)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Monthly fall risk reassessment (Nursing)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Care Coordination Details:</label>
+                <textarea placeholder="Team coordination"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- ========== POLYPHARMACY MODULE ========== -->
+          <!-- ========== POLYPHARMACY MODULE - GENERALIZED ========== -->
+        <div id="module-pharm" class="domain-module">
+            <div class="module-header">
+                <div class="module-title">POLYPHARMACY / MEDICATION OPTIMIZATION</div>
+            </div>
+
+            <h3>ASSESSMENT</h3>
+
+            <div class="form-group">
+                <label>Medication Burden:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" name="pharm-status" value="high">
+                        <label class="radio-label">HIGH (≥10 medications)</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="pharm-status" value="moderate">
+                        <label class="radio-label">MODERATE (5-9 medications)</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="pharm-status" value="low">
+                        <label class="radio-label">LOW (<5 medications)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Status Summary (1-2 sentences):</label>
+                <textarea placeholder="Total medications, complexity, recent changes"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Recent Labs/Vitals:</label>
+                <textarea placeholder="Labs related to high-risk medications"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Current Medications & Doses:</label>
+                <textarea placeholder="Complete medication list"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Non-Pharmacologic Interventions:</label>
+                <textarea placeholder="Alternatives to medications considered"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <h3>CARE GAPS</h3>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Polypharmacy (≥10 medications) not addressed</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Beers Criteria medications identified, not reviewed</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">High anticholinergic burden (ACB score ≥3)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Fall-risk medications not reviewed</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Duplicate therapeutic classes identified</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Medications without clear indication</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Renal/hepatic dosing not verified</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Drug-drug interactions identified, not addressed</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">PRN medications used regularly without standing order</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Deprescribing not considered for medications >1 year</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Medication reconciliation not done in past 3 months</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Pharmacy consult not done (if ≥15 medications)</label>
+                    </div>
+                </div>
+            </div>
+
+            <h3>PLAN & RECOMMENDATIONS</h3>
+
+            <div class="urgency-header urgent">URGENT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Discontinue medication causing acute adverse event (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Address severe drug-drug interaction (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header important">IMPORTANT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Comprehensive medication review by pharmacist (Pharmacy)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Deprescribing plan for medications without clear benefit (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Reduce anticholinergic burden (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Address Beers Criteria medications (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Taper/discontinue fall-risk medications if benefit unclear (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Eliminate duplicate therapeutic classes (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header routine">ROUTINE Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Quarterly medication reconciliation (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Beers Criteria screening quarterly (Pharmacy)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Renal/hepatic dosing verification (Pharmacy)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Monitor for adverse drug events (Nursing)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Document indication for each medication (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Annual comprehensive medication review with goals of care (MD/NP)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Care Coordination Details:</label>
+                <textarea placeholder="Team coordination"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+<!-- END OF PART 3 - CONTINUE WITH PART 4 -->
+<!-- ========== IMMUNIZATIONS MODULE ========== -->
+        <div id="module-immun" class="domain-module">
+            <div class="module-header">
+                <div class="module-title">HEALTH MAINTENANCE & IMMUNIZATIONS</div>
+            </div>
+
+            <h3>ASSESSMENT</h3>
+
+            <div class="form-group">
+                <label>Clinical Status:</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" name="immun-status" value="uptodate">
+                        <label class="radio-label">UP TO DATE</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="immun-status" value="overdue">
+                        <label class="radio-label">OVERDUE</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" name="immun-status" value="unknown">
+                        <label class="radio-label">UNKNOWN STATUS</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Status Summary (1-2 sentences):</label>
+                <textarea placeholder="Current immunization status"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Recent Labs/Vitals:</label>
+                <textarea placeholder="Labs for preventive care (lipids, A1c, etc if applicable)"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Current Medications & Doses:</label>
+                <textarea placeholder="N/A for immunizations - list if relevant to preventive care"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <div class="form-group">
+                <label>Non-Pharmacologic Interventions:</label>
+                <textarea placeholder="Preventive care measures, advance directives status"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+
+            <h3>CARE GAPS</h3>
+
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Influenza vaccine not current season</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Pneumococcal (PPSV23) status unknown/not verified</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Pneumococcal (PCV20) not given per ACIP guidelines</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Tetanus status unknown (likely &gt;10 years)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">COVID-19 booster not current</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Shingrix not given (age ≥50)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">RSV vaccine not discussed (age ≥60)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Advance directives not reviewed annually</label>
+                    </div>
+                </div>
+            </div>
+
+            <h3>PLAN & RECOMMENDATIONS</h3>
+
+            <div class="urgency-header urgent">URGENT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">None typically urgent for immunizations</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header important">IMPORTANT Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Administer flu vaccine TODAY (Nursing)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Verify pneumococcal status, administer if needed (Nursing)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Verify COVID status, administer booster if needed (Nursing)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="urgency-header routine">ROUTINE Actions</div>
+            <div class="form-group">
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Verify tetanus, administer Tdap if overdue (Nursing)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Discuss/administer Shingrix series (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Shared decision-making for RSV vaccine (MD/NP)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Update immunization record in MAR (Nursing)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox">
+                        <label class="checkbox-label">Review advance directives annually (Social Work/MD)</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Care Coordination Details:</label>
+                <textarea placeholder="Team coordination"></textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- ========== MONITORING PLANS (Hidden divs, moved by JavaScript) ========== -->
+        
+        <!-- HF Monitoring Plan -->
+        <div id="monitoring-hf" style="display: none;">
+            <h3>MONITORING PLAN</h3>
+            <div class="form-group">
+                <label>How will you monitor this condition? (frequency, parameters, thresholds for escalation)</label>
+                <textarea placeholder="Labs, vitals, assessments - frequency and action thresholds">• Daily weights (report >3 lbs gain in 24 hours)
+• Weekly BNP trending
+• BMP q2 weeks after med changes, then q3 months
+• Monthly APCM visits for assessment
+• Escalate to MD if: weight gain >5 lbs, SOB at rest, BNP doubles</textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- CKD Monitoring Plan -->
+        <div id="monitoring-ckd" style="display: none;">
+            <h3>MONITORING PLAN</h3>
+            <div class="form-group">
+                <label>How will you monitor this condition? (frequency, parameters, thresholds for escalation)</label>
+                <textarea placeholder="Labs, vitals, assessments - frequency and action thresholds">• eGFR, Cr, K+ q3 months (Stage 3b)
+• ACR annually
+• BMP q3 months
+• BP weekly (goal <140/90)
+• Monthly APCM visits
+• Escalate to MD if: eGFR drops >5 points, K+ >5.5, Cr increases >0.3</textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- DM Monitoring Plan -->
+        <div id="monitoring-dm" style="display: none;">
+            <h3>MONITORING PLAN</h3>
+            <div class="form-group">
+                <label>How will you monitor this condition? (frequency, parameters, thresholds for escalation)</label>
+                <textarea placeholder="Labs, vitals, assessments - frequency and action thresholds">• HbA1c q3-6 months (goal <9% for LTC)
+• Glucose monitoring: once daily if stable, BID if adjusting regimen
+• Annual foot exam, eye exam, ACR
+• Monthly APCM visits
+• Escalate to MD if: glucose <70 or >300, recurrent hypoglycemia</textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- HTN Monitoring Plan -->
+        <div id="monitoring-htn" style="display: none;">
+            <h3>MONITORING PLAN</h3>
+            <div class="form-group">
+                <label>How will you monitor this condition? (frequency, parameters, thresholds for escalation)</label>
+                <textarea placeholder="Labs, vitals, assessments - frequency and action thresholds">• BP twice weekly (goal <140/90)
+• K+/Cr q3-6 months if on ACEI/ARB/diuretic
+• Orthostatic BP if falls/dizziness
+• Monthly APCM visits
+• Escalate to MD if: SBP >180, symptomatic hypotension, K+ >5.5</textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- COPD Monitoring Plan -->
+        <div id="monitoring-copd" style="display: none;">
+            <h3>MONITORING PLAN</h3>
+            <div class="form-group">
+                <label>How will you monitor this condition? (frequency, parameters, thresholds for escalation)</label>
+                <textarea placeholder="Labs, vitals, assessments - frequency and action thresholds">• SpO2 daily on room air and on O2
+• Respiratory rate, work of breathing assessment
+• Exacerbation frequency tracking
+• Monthly APCM visits
+• Escalate to MD if: SpO2 <88%, increased dyspnea, change in sputum</textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- CAD Monitoring Plan -->
+        <div id="monitoring-cad" style="display: none;">
+            <h3>MONITORING PLAN</h3>
+            <div class="form-group">
+                <label>How will you monitor this condition? (frequency, parameters, thresholds for escalation)</label>
+                <textarea placeholder="Labs, vitals, assessments - frequency and action thresholds">• Lipid panel annually (LDL goal <70 mg/dL)
+• Chest pain episodes - document frequency, duration, triggers
+• EKG annually or with symptoms
+• Monthly APCM visits
+• Escalate to MD if: new chest pain, chest pain at rest, abnormal EKG</textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- Stroke Monitoring Plan -->
+        <div id="monitoring-stroke" style="display: none;">
+            <h3>MONITORING PLAN</h3>
+            <div class="form-group">
+                <label>How will you monitor this condition? (frequency, parameters, thresholds for escalation)</label>
+                <textarea placeholder="Labs, vitals, assessments - frequency and action thresholds">• BP weekly (goal <140/90)
+• Lipid panel annually
+• Functional status - monthly PT/OT assessments
+• Stroke symptom monitoring (FAST protocol)
+• Monthly APCM visits
+• Escalate to MD if: new neuro deficits, FAST positive, BP >180/110</textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- Dementia Monitoring Plan -->
+        <div id="monitoring-dementia" style="display: none;">
+            <h3>MONITORING PLAN</h3>
+            <div class="form-group">
+                <label>How will you monitor this condition? (frequency, parameters, thresholds for escalation)</label>
+                <textarea placeholder="Labs, vitals, assessments - frequency and action thresholds">• MMSE or BIMS q6-12 months
+• BPSD monitoring - document behaviors, triggers, interventions
+• Functional status - ADL assessments quarterly
+• Safety incidents tracking (falls, wandering, aggression)
+• Monthly APCM visits
+• Escalate to MD if: acute confusion (rule out delirium), dangerous behaviors</textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- Depression Monitoring Plan -->
+        <div id="monitoring-depression" style="display: none;">
+            <h3>MONITORING PLAN</h3>
+            <div class="form-group">
+                <label>How will you monitor this condition? (frequency, parameters, thresholds for escalation)</label>
+                <textarea placeholder="Labs, vitals, assessments - frequency and action thresholds">• PHQ-9 monthly (CoCM protocol)
+• Suicidal ideation assessment at each visit
+• Medication side effects - monitor closely first 2-4 weeks
+• Functional participation tracking (meals, activities, socialization)
+• Monthly APCM visits, weekly CoCM check-ins
+• Escalate to MD if: SI endorsed, worsening depression despite treatment</textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- Falls Monitoring Plan -->
+        <div id="monitoring-falls" style="display: none;">
+            <h3>MONITORING PLAN</h3>
+            <div class="form-group">
+                <label>How will you monitor this condition? (frequency, parameters, thresholds for escalation)</label>
+                <textarea placeholder="Labs, vitals, assessments - frequency and action thresholds">• Fall risk assessment monthly (Morse Fall Scale or equivalent)
+• Vitamin D level annually (goal >30 ng/mL)
+• Post-fall assessments - document ALL falls, injuries, circumstances
+• PT progress notes monthly
+• Monthly APCM visits
+• Escalate to MD if: fall with injury, recurrent falls (>2 in 6 months)</textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- Polypharmacy Monitoring Plan -->
+         <div id="monitoring-pharm" style="display: none;">
+            <h3>MONITORING PLAN</h3>
+            <div class="form-group">
+                <label>How will you monitor this condition? (frequency, parameters, thresholds for escalation)</label>
+                <textarea placeholder="Labs, vitals, assessments - frequency and action thresholds">• Comprehensive medication review quarterly
+• Medication reconciliation at every encounter
+• Beers Criteria screening quarterly
+• Labs per medication-specific protocols (e.g., renal function if on nephrotoxic drugs)
+• Adverse drug event monitoring ongoing (falls, confusion, GI issues, orthostasis)
+• Monthly medication necessity review
+• Escalate to MD if: suspected ADR, drug-drug interaction identified, unexplained clinical decline</textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <!-- Immunizations Monitoring Plan -->
+        <div id="monitoring-immun" style="display: none;">
+            <h3>MONITORING PLAN</h3>
+            <div class="form-group">
+                <label>How will you monitor this condition? (frequency, parameters, thresholds for escalation)</label>
+                <textarea placeholder="Labs, vitals, assessments - frequency and action thresholds">• Immunization status review annually
+• Flu vaccine: every fall season (September-November)
+• Advance directives review annually
+• Preventive care checklist review quarterly
+• Annual wellness visit</textarea>
+                <div class="helper-text">Pre-filled from last visit - update if changed</div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- ========== SUMMARY SECTION ========== -->
+        <h2>CARE PLAN SUMMARY</h2>
+
+        <div style="background-color: #f9f9f9; padding: 10px; border-left: 3px solid #2196F3; margin-bottom: 15px; font-size: 13px;">
+            Provider: Manually complete this summary based on domains addressed above.
+        </div>
+
+        <div class="form-group">
+            <label>Total Care Gaps Identified:</label>
+            <input type="number" placeholder="Count total gaps checked above">
+        </div>
+
+        <div class="form-group">
+            <label>Open Gaps:</label>
+            <input type="number" placeholder="Count open gaps">
+        </div>
+
+        <div class="form-group">
+            <label>In Progress:</label>
+            <input type="number" placeholder="Count in-progress gaps">
+        </div>
+
+        <div class="form-group">
+            <label>URGENT actions selected:</label>
+            <input type="number" placeholder="Count urgent actions">
+        </div>
+
+        <div class="form-group">
+            <label>IMPORTANT actions selected:</label>
+            <input type="number" placeholder="Count important actions">
+        </div>
+
+        <div class="form-group">
+            <label>ROUTINE actions selected:</label>
+            <input type="number" placeholder="Count routine actions">
+        </div>
+
+        <h3 style="margin-top: 25px;">TASK DISTRIBUTION</h3>
+
+        <div class="form-group">
+            <label>MD/NP Tasks:</label>
+            <textarea placeholder="Paste selected MD/NP actions here"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Nursing Tasks:</label>
+            <textarea placeholder="Paste selected nursing actions here"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Specialist Referrals:</label>
+            <textarea placeholder="Paste selected specialist actions here"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Other Team Tasks (RPM, Pharmacy, Activities, etc.):</label>
+            <textarea placeholder="Paste other team tasks here"></textarea>
+        </div>
+
+        <h3 style="margin-top: 25px;">INTERDISCIPLINARY TEAM</h3>
+
+        <div class="form-group">
+            <label>Team members involved:</label>
+            <textarea placeholder="APCM Lead, Facility MD/NP, Nursing, PT/OT, Pharmacy, Specialists, CoCM, RPM team, etc."></textarea>
+        </div>
+
+        <h3 style="margin-top: 25px;">NEXT STEPS</h3>
+
+        <div class="form-group">
+            <label>Next Care Plan Review Date:</label>
+            <input type="date">
+        </div>
+
+        <div class="form-group">
+            <label>Follow-up needed:</label>
+            <textarea placeholder="List pending items, scheduled appointments, lab orders, etc."></textarea>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <!-- ========== ATTESTATION ========== -->
+        <h2>PROVIDER ATTESTATION</h2>
+
+        <div style="background-color: #f9f9f9; padding: 10px; border-left: 3px solid #2196F3; margin-bottom: 15px; font-size: 13px;">
+            By submitting this form, you attest that the comprehensive care plan has been created/updated, all service elements have been furnished per APCM requirements, and the information documented is accurate.
+        </div>
+
+        <div class="form-group">
+            <label>Provider Name:</label>
+            <input type="text" placeholder="Provider name">
+        </div>
+
+        <div class="form-group">
+            <label>Provider Credentials:</label>
+            <input type="text" placeholder="MD, NP, PA-C, etc.">
+        </div>
+
+        <div class="form-group">
+            <label>Date of Service:</label>
+            <input type="date">
+        </div>
+
+        <div class="form-group">
+            <div class="checkbox-item">
+                <input type="checkbox" id="attestation">
+                <label for="attestation" class="checkbox-label">I attest to the accuracy and completeness of this care plan</label>
+            </div>
+        </div>
+
+        <button style="background-color: #4CAF50; color: white; padding: 12px 30px; border: none; font-size: 16px; cursor: pointer; margin-top: 20px;" onclick="submitForm()">SUBMIT CARE PLAN</button>
+    </div>
+
+    <script>
+        function toggleDomain(domain) {
+            const checkbox = document.getElementById('domain-' + domain);
+            const module = document.getElementById('module-' + domain);
+            
+            if (checkbox.checked) {
+                module.classList.add('active');
+            } else {
+                module.classList.remove('active');
+            }
+            
+            updateMonitoringPlans();
+        }
+
+        function toggleCKDStage() {
+            document.getElementById('ckd-gaps-3a').classList.remove('active');
+            document.getElementById('ckd-gaps-3b').classList.remove('active');
+            document.getElementById('ckd-gaps-4').classList.remove('active');
+            document.getElementById('ckd-gaps-5').classList.remove('active');
+
+            const stage = document.querySelector('input[name="ckd-stage"]:checked');
+            if (stage) {
+                document.getElementById('ckd-gaps-' + stage.value).classList.add('active');
+            }
+        }
+
+        function updateMonitoringPlans() {
+            const domains = ['hf', 'ckd', 'dm', 'htn', 'copd', 'cad', 'stroke', 'dementia', 'depression', 'falls', 'pharm', 'immun'];
+            
+            domains.forEach(domain => {
+                const checked = document.getElementById('domain-' + domain).checked;
+                const module = document.getElementById('module-' + domain);
+                const monitoring = document.getElementById('monitoring-' + domain);
+                
+                if (checked && module && monitoring) {
+                    module.appendChild(monitoring);
+                    monitoring.style.display = 'block';
+                } else if (monitoring) {
+                    monitoring.style.display = 'none';
+                }
+            });
+        }
+
+        function submitForm() {
+            const attestation = document.getElementById('attestation');
+            if (!attestation.checked) {
+                alert('Please check the attestation box before submitting.');
+                return;
+            }
+            alert('Care plan submitted successfully!\n\nIn production, this would save to Omniverse/EMR.');
+        }
+
+        window.addEventListener('DOMContentLoaded', function() {
+            toggleCKDStage();
+            updateMonitoringPlans();
+            
+            // ========== SAMPLE TEXT PRE-FILL ==========
+            
+            // HF
+            const hfModule = document.getElementById('module-hf');
+            if (hfModule) {
+                hfModule.querySelector('textarea[placeholder*="Brief clinical summary"]').value = 
+                    'Recent acute decompensation, currently compensated. EF 35%, BNP 380, mild peripheral edema, clear lungs, stable weight.';
+                hfModule.querySelector('textarea[placeholder*="BNP"]').value = 
+                    'BNP 380 pg/mL (12/15), K+ 4.4 mEq/L, Cr 1.8 mg/dL, eGFR 38, Weight 198 lbs';
+                hfModule.querySelector('textarea[placeholder*="List current HF medications"]').value = 
+                    '• Metoprolol succinate 50mg PO daily\n• Lisinopril 20mg PO daily\n• Furosemide 40mg PO twice daily';
+                hfModule.querySelector('textarea[placeholder*="Dietary restrictions"]').value = 
+                    '• 2g sodium restriction\n• 1.5L fluid restriction\n• Physical therapy for conditioning';
+                hfModule.querySelector('textarea[placeholder*="Team coordination, referrals"]').value = 
+                    '• Cardiology: Last seen [date], f/u scheduled [date]\n• RPM: Monitor BP/HR/weight alerts\n• Nursing: Daily weights protocol, I&O documentation';
+            }
+
+            // CKD
+            const ckdModule = document.getElementById('module-ckd');
+            if (ckdModule) {
+                ckdModule.querySelector('textarea[placeholder*="Brief clinical summary"]').value = 
+                    'eGFR 38 mL/min (stable), Cr 1.8 mg/dL, K+ 4.4 mEq/L. CKD Stage 3b, etiology: diabetic kidney disease, hypertensive nephropathy.';
+                ckdModule.querySelector('textarea[placeholder*="eGFR, Cr"]').value = 
+                    '12/15/2025: eGFR 38, Cr 1.8, K+ 4.4, ACR pending, Hgb 11.2, BP 138/82';
+                ckdModule.querySelector('textarea[placeholder*="ACEI/ARB, BP control"]').value = 
+                    '• Lisinopril 20mg PO daily (ACEI for renoprotection)\n• BP at goal <140/90\n• All medications reviewed for renal dosing\n• Avoid nephrotoxins (NSAIDs, contrast)';
+                ckdModule.querySelector('textarea[placeholder*="Dietary modifications"]').value = 
+                    '• Renal diet consult (low K+, low phos if indicated)\n• Adequate hydration unless restricted\n• Sick-day protocol education';
+                ckdModule.querySelector('textarea[placeholder*="Team coordination"]').value = 
+                    '• Nursing: Sick-day protocol education, monitor for volume depletion\n• Pharmacy: Annual renal dosing review for all medications\n• RPM: Monitor BP and early AKI detection through vitals\n• Nephrology: Referral pending';
+            }
+
+            // DM
+            const dmModule = document.getElementById('module-dm');
+            if (dmModule) {
+                dmModule.querySelector('textarea[placeholder*="Brief clinical summary"]').value = 
+                    'HbA1c 8.9% (at LTC goal <9%), no recent hypoglycemia, glucose readings 160-210 mg/dL. Type 2 diabetes, duration 15+ years. Currently on complex insulin regimen with SSI.';
+                dmModule.querySelector('textarea[placeholder*="HbA1c, glucose"]').value = 
+                    'HbA1c 8.9% (11/25), fasting glucose 160-210 mg/dL, no documented hypoglycemia in past 3 months';
+                dmModule.querySelector('textarea[placeholder*="Diabetes medications"]').value = 
+                    '• Metformin 1000mg PO BID\n• Insulin glargine 30 units subcutaneous nightly\n• Insulin lispro SSI (sliding scale) with meals - HIGH RISK for hypoglycemia\n• BID glucose monitoring';
+                dmModule.querySelector('textarea[placeholder*="Diet, exercise, monitoring"]').value = 
+                    '• Diabetic diet (consistent carbohydrate)\n• BID glucose monitoring (may be excessive)\n• Dietary consult completed\n• Sedentary lifestyle, limited mobility';
+                dmModule.querySelector('textarea[placeholder*="Team coordination"]').value = 
+                    '• Podiatry: Appointment scheduled 01/20/2026\n• Ophthalmology: Referral for diabetic retinopathy screening\n• Dietary: Consistent carbohydrate diet\n• Nursing: Glucose monitoring protocol\n• Consider endocrine consult for regimen simplification';
+            }
+
+            // HTN
+            const htnModule = document.getElementById('module-htn');
+            if (htnModule) {
+                htnModule.querySelector('textarea[placeholder*="Brief clinical summary"]').value = 
+                    'BP persistently elevated 140-150/80-90, on dual therapy. Essential hypertension, well-tolerated current regimen, no orthostatic symptoms.';
+                htnModule.querySelector('textarea[placeholder*="BP readings"]').value = 
+                    'BP readings last week: 142/78, 138/80, 145/82, 148/84\nK+ 4.2 mEq/L, Cr 1.1 mg/dL';
+                htnModule.querySelector('textarea[placeholder*="Antihypertensive medications"]').value = 
+                    '• Lisinopril 20mg PO daily\n• Amlodipine 5mg PO daily';
+                htnModule.querySelector('textarea[placeholder*="Dietary sodium restriction"]').value = 
+                    '• Low sodium diet (<2g/day)\n• Dietary consult completed\n• Weight management encouraged';
+                htnModule.querySelector('textarea[placeholder*="Team coordination"]').value = 
+                    '• Nursing: BP monitoring protocol, report if >150/90\n• Dietary: Low sodium education (<2g/day)\n• Labs: Recheck K+/Cr after medication changes';
+            }
+
+            // COPD
+            const copdModule = document.getElementById('module-copd');
+            if (copdModule) {
+                copdModule.querySelector('textarea[placeholder*="Brief clinical summary"]').value = 
+                    'COPD GOLD Stage 3, SpO2 92% on 2L O2 continuous, occasional dyspnea with exertion, productive cough with clear sputum. Last exacerbation 6 months ago.';
+                copdModule.querySelector('textarea[placeholder*="SpO2, ABG"]').value = 
+                    'SpO2 92% on 2L O2, RR 18, no accessory muscle use\nLast CXR 3 months ago: stable hyperinflation, no infiltrate';
+                copdModule.querySelector('textarea[placeholder*="Bronchodilators, ICS"]').value = 
+                    '• Albuterol inhaler 2 puffs Q4-6H PRN\n• Tiotropium 18mcg inhalation daily\n• O2 2L continuous via nasal cannula';
+                copdModule.querySelector('textarea[placeholder*="O2 therapy, pulmonary rehab"]').value = 
+                    '• O2 therapy 2L continuous\n• Respiratory therapy: inhaler technique education\n• Smoking cessation (former smoker, quit 2015)';
+                copdModule.querySelector('textarea[placeholder*="Team coordination"]').value = 
+                    '• RT: Inhaler technique education, nebulizer treatments\n• Nursing: SpO2 monitoring, SOB assessment, O2 titration\n• Vaccines: Flu (annual), pneumococcal status verified\n• Pulmonary Rehab: Referral pending';
+            }
+
+            // CAD
+            const cadModule = document.getElementById('module-cad');
+            if (cadModule) {
+                cadModule.querySelector('textarea[placeholder*="Brief clinical summary"]').value = 
+                    'History of MI 2020 with stent placement, currently asymptomatic, no chest pain or dyspnea. On optimal medical therapy, compliant with medications.';
+                cadModule.querySelector('textarea[placeholder*="Lipid panel"]').value = 
+                    'Lipid panel 11/2025: LDL 85 mg/dL (goal <70), HDL 42, TG 150\nLast EKG: NSR, old inferior Q waves, no acute changes';
+                cadModule.querySelector('textarea[placeholder*="Antiplatelet, beta-blocker"]').value = 
+                    '• Aspirin 81mg PO daily\n• Atorvastatin 80mg PO nightly (high-intensity statin)\n• Metoprolol succinate 50mg PO daily\n• Lisinopril 10mg PO daily';
+                cadModule.querySelector('textarea[placeholder*="Cardiac rehab"]').value = 
+                    '• Cardiac rehab completed 2020\n• Low-fat, heart-healthy diet\n• Smoking cessation (former smoker)';
+                cadModule.querySelector('textarea[placeholder*="Team coordination"]').value = 
+                    '• Cardiology: Follow-up as needed, last seen [date]\n• Nursing: Chest pain protocol, NTG administration education\n• Labs: Annual lipid panel, LDL goal <70 mg/dL';
+            }
+
+            // Stroke
+            const strokeModule = document.getElementById('module-stroke');
+            if (strokeModule) {
+                strokeModule.querySelector('textarea[placeholder*="Brief clinical summary"]').value = 
+                    'CVA 2022 (ischemic, left MCA territory), residual right-sided weakness, mild expressive aphasia. Functional status stable, maximal assist with ADLs.';
+                strokeModule.querySelector('textarea[placeholder*="Imaging if new"]').value = 
+                    'Last brain imaging 2022 (MRI): Left MCA infarct\nLipid panel 10/2025: LDL 90 mg/dL\nBP 135/78 (on target)';
+                strokeModule.querySelector('textarea[placeholder*="Antiplatelet, statin, BP meds"]').value = 
+                    '• Aspirin 81mg PO daily\n• Atorvastatin 40mg PO nightly\n• Lisinopril 20mg PO daily\n• PT/OT/ST 3x/week';
+                strokeModule.querySelector('textarea[placeholder*="PT/OT/ST"]').value = 
+                    '• PT/OT/ST for functional recovery\n• Modified diet (puree, thin liquids per swallow study)\n• Fall precautions, walker for ambulation';
+                strokeModule.querySelector('textarea[placeholder*="Team coordination"]').value = 
+                    '• PT/OT/ST: Functional recovery program, 3x/week\n• Speech Therapy: Swallow study completed, modified diet\n• Cardiology: AFib screening, EKG monitoring\n• Nursing: Fall precautions, stroke symptom monitoring';
+            }
+
+            // Dementia
+            const dementiaModule = document.getElementById('module-dementia');
+            if (dementiaModule) {
+                dementiaModule.querySelector('textarea[placeholder*="Brief clinical summary"]').value = 
+                    'Alzheimer\'s dementia, moderate stage (BIMS 8/15, MMSE 18/30). Oriented to person only, requires extensive assistance with all ADLs, pleasant affect, no current behavioral disturbances.';
+                dementiaModule.querySelector('textarea[placeholder*="Cognitive assessments"]').value = 
+                    'BIMS 8/15 (moderate impairment), MMSE 18/30\nB12 450 pg/mL (normal), TSH 2.1 mIU/L (normal), RPR negative';
+                dementiaModule.querySelector('textarea[placeholder*="Cholinesterase inhibitors"]').value = 
+                    '• Donepezil 10mg PO nightly\n• Memantine 10mg PO BID\n• Avoid anticholinergics per Beers Criteria';
+                dementiaModule.querySelector('textarea[placeholder*="Structured activities"]').value = 
+                    '• Structured activities program (music therapy, reminiscence)\n• Meaningful engagement, life enrichment\n• Wandering precautions, name band\n• Family education on dementia care';
+                dementiaModule.querySelector('textarea[placeholder*="Team coordination"]').value = 
+                    '• Activities: Individualized engagement plan (music, reminiscence, sensory)\n• Nursing: Safety assessment, redirection techniques, avoid restraints\n• Social Work: Family education, support groups\n• Pharmacy: Avoid anticholinergics, monitor for polypharmacy';
+            }
+
+            // Depression
+            const depressionModule = document.getElementById('module-depression');
+            if (depressionModule) {
+                depressionModule.querySelector('textarea[placeholder*="Brief clinical summary"]').value = 
+                    'Moderate depression (PHQ-9: 13), mild anxiety (GAD-7: 9). Chronic since 2018, currently untreated. Functional impact: social withdrawal, stays in room, flat affect, tearfulness occasionally.';
+                depressionModule.querySelector('textarea[placeholder*="PHQ-9, GAD-7"]').value = 
+                    'PHQ-9: 13 (moderate depression) - 12/20/2025\nGAD-7: 9 (mild anxiety) - 12/20/2025\nTSH 2.5 mIU/L (rule out hypothyroidism)';
+                depressionModule.querySelector('textarea[placeholder*="Antidepressants"]').value = 
+                    'Currently no psychiatric medications\n[If on meds: Sertraline 50mg PO daily, started [date]]';
+                depressionModule.querySelector('textarea[placeholder*="Behavioral activation"]').value = 
+                    '• CoCM enrollment requested\n• Behavioral activation plan being developed\n• Structured social engagement encouraged\n• Individual counseling sessions';
+                depressionModule.querySelector('textarea[placeholder*="Team coordination"]').value = 
+                    '• CoCM: Monthly PHQ-9 monitoring, behavioral activation\n• Psychiatry: Referral for medication management\n• Activities: Individualized social engagement plan\n• Nursing: Suicide risk monitoring, medication compliance';
+            }
+
+            // Falls
+            const fallsModule = document.getElementById('module-falls');
+            if (fallsModule) {
+                fallsModule.querySelector('textarea[placeholder*="Fall history"]').value = 
+                    '2 falls in past 3 months, most recent 2 weeks ago (no injury). Unsteady gait, uses walker inconsistently. Vitamin D 18 ng/mL (low).';
+                fallsModule.querySelector('textarea[placeholder*="Vitamin D level"]').value = 
+                    'Vitamin D 18 ng/mL (low, goal >30)\nBP 132/76 (no orthostatic hypotension documented)';
+                fallsModule.querySelector('textarea[placeholder*="Fall-risk medications"]').value = 
+                    '• Gabapentin 300mg TID (fall risk)\n• Diphenhydramine 25mg HS PRN (anticholinergic, fall risk)\n• Lisinopril 20mg daily';
+                fallsModule.querySelector('textarea[placeholder*="Assistive devices"]').value = 
+                    '• Walker available but inconsistently used\n• Low bed, mat on floor\n• Nightlight in room and hallway';
+                fallsModule.querySelector('textarea[placeholder*="Team coordination"]').value = 
+                    '• PT: Gait/balance assessment, walker training\n• Nursing: Environmental safety rounds, toileting schedule\n• Pharmacy: Fall-risk medication review\n• Ophthalmology: Vision screening scheduled';
+            }
+
+             // Polypharmacy - GENERALIZED
+            const pharmModule = document.getElementById('module-pharm');
+            if (pharmModule) {
+                pharmModule.querySelector('textarea[placeholder*="Total medications"]').value = 
+                    'Total medications: 12 (high burden). Multiple chronic conditions requiring complex regimen. Recent medication changes: None in past 3 months.';
+                
+                pharmModule.querySelector('textarea[placeholder*="Labs related to high-risk"]').value = 
+                    'K+ 4.2 mEq/L, Cr 1.1 mg/dL, eGFR 55 mL/min\nLFTs WNL, TSH 2.3 mIU/L';
+                
+                pharmModule.querySelector('textarea[placeholder*="Complete medication list"]').value = 
+                    'Complete active medication list documented in MAR\n[Provider to review current MAR for accuracy]';
+                
+                pharmModule.querySelector('textarea[placeholder*="Alternatives to medications"]').value = 
+                    '• Non-pharmacologic interventions explored where appropriate\n• Patient/family education on medication necessity\n• Regular review of risk vs. benefit for each medication';
+                
+                pharmModule.querySelector('textarea[placeholder*="Team coordination"]').value = 
+                    '• Pharmacy: Quarterly comprehensive medication review\n• MD/NP: Medication reconciliation, assess continued need\n• Nursing: Monitor for adverse effects, falls, confusion\n• Dietary: Consider non-pharm alternatives (e.g., fiber for constipation)';
+            }
+
+            // Immunizations
+            const immunModule = document.getElementById('module-immun');
+            if (immunModule) {
+                immunModule.querySelector('textarea[placeholder*="Current immunization status"]').value = 
+                    'Flu vaccine current season: Not yet. Pneumococcal: PPSV23 2015 (likely due for PCV20). COVID: Last dose 2023. Shingrix: Unknown. Tetanus: Unknown (likely >10 years).';
+                immunModule.querySelector('textarea[placeholder*="Labs for preventive"]').value = 
+                    'N/A for immunizations specifically\n[If applicable: Recent lipid panel, A1c, etc. for general preventive care]';
+                immunModule.querySelector('textarea[placeholder*="N/A for immunizations"]').value = 
+                    'N/A - immunizations are non-pharmacologic preventive measures';
+                immunModule.querySelector('textarea[placeholder*="Preventive care measures"]').value = 
+                    '• Advance directives on file, last reviewed 2024\n• POLST form completed\n• Healthcare proxy: [Name], relationship: [Daughter]';
+                immunModule.querySelector('textarea[placeholder*="Team coordination"]').value = 
+                    '• Nursing: Administer flu, pneumococcal, COVID vaccines as ordered\n• Social Work: Annual advance directive review\n• Pharmacy: Update immunization record in MAR';
+            }
+        });
+    </script>
+<script>
+// Wait for page to load
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // =========================================================================
+    // CARE GAPS REFERENCES (with sources)
+    // =========================================================================
+    const gapReferences = {
+        // HEART FAILURE (10)
+        "Beta-blocker below target dose": "AMDA 2024 HF CPG: Beta-blockers reduce mortality in HFrEF; target evidence-based doses (carvedilol 25mg BID, metoprolol succinate 200mg daily)",
+        "ACE-I/ARB not at target dose": "ACC/AHA 2022 HF Guidelines: ACE-I/ARB reduce mortality and hospitalization in HFrEF; uptitrate to maximally tolerated dose",
+        "Aldosterone antagonist not started (EF <40%)": "ACC/AHA 2022 HF Guidelines: Spironolactone reduces mortality in HFrEF with EF ≤35% if adequate renal function (Cr <2.5, K+ <5.0)",
+        "SGLT2 inhibitor not started": "ACC/AHA 2022 HF Guidelines: SGLT2i (dapagliflozin, empagliflozin) reduce HF hospitalization and mortality in HFrEF regardless of diabetes status",
+        "BNP/NT-proBNP not trended": "ACC/AHA 2022 HF Guidelines: Serial BNP monitoring helps guide therapy and predict decompensation in HF patients",
+        "Daily weights not documented": "AMDA 2024 HF CPG: Daily weights detect early volume overload; >3 lb gain in 24 hours or >5 lb in 1 week warrants evaluation",
+        "Fluid restriction not ordered": "ACC/AHA 2022 HF Guidelines: Fluid restriction (1.5-2L/day) recommended in NYHA Class III-IV HF to reduce volume overload",
+        "Sodium restriction (<2g/day) not ordered": "ACC/AHA 2022 HF Guidelines: Sodium restriction <2g/day reduces fluid retention and hospitalizations in symptomatic HF",
+        "Cardiology follow-up overdue": "AMDA 2024 HF CPG: Regular cardiology follow-up for medication optimization and advanced therapies consideration in HFrEF",
+        "RPM not enrolled": "CMS 2024 RPM Guidelines: Remote patient monitoring improves HF outcomes through early detection of decompensation",
+        
+        // CKD STAGE 3A (7)
+        "eGFR not monitored q6 months": "KDIGO 2024 CKD Guidelines: CKD Stage 3a requires eGFR monitoring every 6-12 months to track progression",
+        "ACR not documented annually": "KDIGO 2024 CKD Guidelines: Annual ACR screening identifies albuminuria, guides therapy intensification, and stratifies CV risk",
+        "ACEI/ARB not optimized": "KDIGO 2024 CKD Guidelines: ACEI/ARB are first-line for renoprotection in CKD with albuminuria or HTN/DM",
+        "BP not at target <140/90": "KDIGO 2024 CKD Guidelines: BP <140/90 (or <130/80 if ACR >30) slows CKD progression and reduces CV events",
+        "Nephrotoxins not avoided": "KDIGO 2024 CKD Guidelines: Avoid NSAIDs, contrast agents when possible; adjust medications for renal function",
+        "Renal dosing not verified": "KDIGO 2024 CKD Guidelines: All medications must be dose-adjusted for eGFR to prevent toxicity in CKD",
+        "Patient education not done": "KDIGO 2024 CKD Guidelines: Patient education on CKD progression, dietary modifications, and sick-day protocols improves outcomes",
+        
+        // CKD STAGE 3B (10)
+        "ACR not documented": "KDIGO 2024 CKD Guidelines: ACR guides treatment intensity and predicts progression to ESKD in CKD 3b",
+        "KFRE score not calculated": "KDIGO 2024 CKD Guidelines: Kidney Failure Risk Equation predicts 2- and 5-year risk of ESKD to guide nephrology referral timing",
+        "eGFR not monitored q3 months": "KDIGO 2024 CKD Guidelines: CKD Stage 3b requires eGFR monitoring every 3-6 months due to higher progression risk",
+        "Sick-day protocol not done": "KDIGO 2024 CKD Guidelines: Sick-day protocol (hold ACEI/ARB, diuretics, metformin during illness) prevents AKI in CKD",
+        "SGLT2i not considered": "KDIGO 2024 CKD Guidelines: SGLT2i slow CKD progression and reduce CV events in CKD with or without diabetes (eGFR ≥20)",
+        "Anemia screening overdue": "KDIGO 2024 CKD Guidelines: Screen for anemia in CKD 3b (Hgb <12 F, <13 M); evaluate for iron deficiency and consider ESA if symptomatic",
+        "Nephrology not consulted": "KDIGO 2024 CKD Guidelines: Nephrology referral indicated for CKD 3b with rapid decline (>5 mL/min/year), heavy albuminuria, or refractory HTN",
+        "Vitamin D/PTH not checked": "KDIGO 2024 CKD Guidelines: Monitor vitamin D and PTH in CKD 3b for bone mineral disorder; supplement if deficient",
+        "K+/phos not monitored q3mo": "KDIGO 2024 CKD Guidelines: Quarterly K+ and phosphorus monitoring prevents hyperkalemia and hyperphosphatemia complications in CKD 3b",
+        
+        // CKD STAGE 4 (10)
+        "eGFR not monitored monthly": "KDIGO 2024 CKD Guidelines: CKD Stage 4 requires monthly eGFR monitoring due to high risk of progression to ESKD",
+        "Nephrology co-management not established": "KDIGO 2024 CKD Guidelines: Nephrology co-management essential in Stage 4 CKD for dialysis preparation and complication management",
+        "Dialysis access planning not discussed": "KDIGO 2024 CKD Guidelines: Dialysis access planning should begin in Stage 4 CKD (eGFR <30) to allow maturation before ESKD",
+        "Anemia (ESA) not managed": "KDIGO 2024 CKD Guidelines: ESA therapy appropriate in Stage 4 CKD if Hgb <10 and symptomatic despite iron repletion",
+        "Acidosis not addressed": "KDIGO 2024 CKD Guidelines: Metabolic acidosis (HCO3 <22) worsens bone disease and muscle wasting; treat with sodium bicarbonate",
+        "Hyperkalemia protocol not in place": "KDIGO 2024 CKD Guidelines: Stage 4 CKD requires hyperkalemia management protocol (dietary restriction, binders, monitoring)",
+        "Phosphate binders not optimized": "KDIGO 2024 CKD Guidelines: Phosphate binders prevent hyperphosphatemia and CKD-mineral bone disorder in Stage 4-5",
+        "Advance care planning not done": "KDIGO 2024 CKD Guidelines: Advance care planning essential in Stage 4 CKD to discuss dialysis, conservative care, and transplant options",
+        "Renal diet consult not done": "KDIGO 2024 CKD Guidelines: Renal dietitian essential for managing protein, K+, phos, and fluid restrictions in Stage 4 CKD",
+        "CMP not monitored monthly": "KDIGO 2024 CKD Guidelines: Monthly comprehensive metabolic panel tracks electrolytes, acid-base, and kidney function in Stage 4 CKD",
+        
+        // CKD STAGE 5 (8)
+        "Dialysis not initiated despite uremic symptoms": "KDIGO 2024 CKD Guidelines: Dialysis initiation indicated for uremic symptoms (nausea, encephalopathy, pericarditis) regardless of eGFR",
+        "Vascular access not placed": "KDIGO 2024 CKD Guidelines: AV fistula preferred access; should be placed when eGFR <20 to allow maturation",
+        "Palliative care not offered": "KDIGO 2024 CKD Guidelines: Conservative kidney management with palliative care is alternative to dialysis in Stage 5 CKD",
+        "Volume management inadequate": "KDIGO 2024 CKD Guidelines: Volume overload management critical in Stage 5; diuretics and dialysis as needed",
+        "Severe hyperkalemia protocol not in place": "KDIGO 2024 CKD Guidelines: K+ >6.0 requires urgent treatment (insulin/dextrose, calcium gluconate); dialysis if refractory",
+        "Acidosis not managed": "KDIGO 2024 CKD Guidelines: Severe metabolic acidosis treated with sodium bicarbonate or corrected via dialysis",
+        "Anemia/ESA optimization not done": "KDIGO 2024 CKD Guidelines: Target Hgb 10-11.5 with ESA in Stage 5 CKD on dialysis; avoid overshooting to reduce CV risk",
+        "Nutritional support inadequate": "KDIGO 2024 CKD Guidelines: Stage 5 CKD requires specialized nutrition; monitor albumin, consider protein supplementation on dialysis",
+        
+        // DIABETES (11)
+        "A1c not at individualized goal": "ADA 2024 Standards of Care & AMDA 2024 DM CPG: A1c goal <9% for older adults in LTC; <8% if healthy, avoid <7% due to hypoglycemia risk",
+        "Sliding scale insulin (SSI) not transitioned to basal-bolus": "ADA 2024 Standards of Care: SSI is reactive, not proactive; transition to basal insulin ± bolus reduces hypoglycemia and improves control",
+        "Complex regimen not simplified (deprescribing opportunity)": "AMDA 2024 DM CPG: Simplify diabetes regimen in older adults; reduce pill burden and hypoglycemia risk through deprescribing",
+        "Glucose monitoring frequency excessive (>1x daily if stable)": "ADA 2024 Standards of Care: Once daily glucose monitoring sufficient if A1c stable and no insulin adjustments; reduces patient burden",
+        "Comprehensive foot exam overdue (>12 months)": "ADA 2024 Standards of Care: Annual comprehensive foot exam (monofilament, pulses, inspection) detects neuropathy and prevents ulcers",
+        "Dilated eye exam not documented in past year": "ADA 2024 Standards of Care: Annual dilated eye exam detects diabetic retinopathy early when treatment is most effective",
+        "Urine ACR not checked annually": "ADA 2024 Standards of Care: Annual ACR screening detects diabetic nephropathy; triggers ACEI/ARB and SGLT2i therapy",
+        "GLP-1 agonist not considered (if A1c >8% and no contraindications)": "ADA 2024 Standards of Care: GLP-1 agonists reduce A1c, promote weight loss, and provide CV/renal protection with low hypoglycemia risk",
+        "Statin not started (age >40 or CVD risk)": "ADA 2024 Standards of Care: Moderate-intensity statin recommended for all diabetics age 40-75; high-intensity if established CVD",
+        "Hypoglycemia protocol not documented": "ADA 2024 Standards of Care: Written hypoglycemia protocol (glucose <70: 15g carbs, recheck in 15 min) essential for patient safety",
+        "Sick day medication plan not documented": "ADA 2024 Standards of Care: Sick-day plan (hold metformin during illness, maintain hydration) prevents DKA and AKI",
+        
+        // HYPERTENSION (8)
+        "BP persistently above target": "JNC 8 HTN Guidelines: BP goal <140/90 for older adults; <130/80 if CKD or high CV risk",
+        "Not on thiazide diuretic": "JNC 8 HTN Guidelines: Thiazide diuretics are first-line for uncomplicated HTN; reduce stroke and CV events",
+        "Not on combination therapy": "JNC 8 HTN Guidelines: Most patients require ≥2 antihypertensives for BP control; combination therapy improves adherence",
+        "ACEI/ARB not used despite CKD/DM": "JNC 8 HTN Guidelines: ACEI/ARB preferred in HTN with CKD or diabetes for renoprotection and CV risk reduction",
+        "K+/Cr not monitored q3-6mo": "JNC 8 HTN Guidelines: Monitor K+ and Cr within 2-4 weeks after starting ACEI/ARB/diuretic, then q3-6 months",
+        "Dietary sodium restriction not ordered": "JNC 8 & DASH Diet: Sodium <2g/day lowers BP 5-10 mmHg and enhances medication effectiveness",
+        "Orthostatic BP not checked": "AMDA 2024 Falls CPG: Orthostatic hypotension screening prevents falls; positive if SBP drops >20 mmHg or DBP >10 mmHg upon standing",
+        "BP monitoring frequency inadequate": "JNC 8 HTN Guidelines: Monitor BP at least monthly in uncontrolled HTN; weekly during medication titration",
+        
+        // COPD (9)
+        "Not on LABA/LAMA bronchodilator therapy": "GOLD 2024 COPD Guidelines: LABA/LAMA combination is first-line for symptomatic COPD; reduces exacerbations and improves quality of life",
+        "ICS not added despite ≥2 exacerbations/year": "GOLD 2024 COPD Guidelines: Add ICS to LABA/LAMA if ≥2 exacerbations/year or eosinophils >300; reduces exacerbation frequency",
+        "O2 therapy not provided despite SpO2 <88-90%": "GOLD 2024 COPD Guidelines: Long-term O2 therapy (LTOT) indicated if resting SpO2 ≤88% or PaO2 ≤55 mmHg; improves survival",
+        "Pulmonary rehabilitation not referred": "GOLD 2024 COPD Guidelines: Pulmonary rehab improves exercise capacity, dyspnea, and quality of life; reduces hospitalizations",
+        "Annual influenza vaccine not given": "GOLD 2024 & CDC 2024 ACIP: Annual flu vaccine reduces exacerbations and mortality in COPD patients",
+        "Pneumococcal vaccine not documented": "CDC 2024 ACIP & AMDA 2024: PPSV23 and/or PCV20 reduce pneumonia risk; essential in chronic lung disease",
+        "Exacerbation action plan not in place": "GOLD 2024 COPD Guidelines: Written action plan (increased dyspnea/sputum → steroids/antibiotics) enables early treatment and prevents hospitalization",
+        "Smoking cessation counseling not done (if applicable)": "GOLD 2024 COPD Guidelines: Smoking cessation is the only intervention that slows COPD progression; offer counseling and pharmacotherapy",
+        "Spirometry baseline not documented": "GOLD 2024 COPD Guidelines: Baseline spirometry (FEV1/FVC) confirms diagnosis and severity; guides treatment decisions",
+        
+        // CAD (8)
+        "Aspirin/antiplatelet not started": "ACC/AHA 2021 Chest Pain Guidelines: Aspirin 81mg daily reduces recurrent MI and CV death in established CAD",
+        "Beta-blocker not started post-MI": "ACC/AHA 2021 Chest Pain Guidelines: Beta-blockers reduce mortality post-MI; continue indefinitely unless contraindicated",
+        "High-intensity statin not started": "ACC/AHA 2021 Chest Pain Guidelines: High-intensity statin (atorvastatin 80mg or rosuvastatin 40mg) reduces recurrent events in CAD; target LDL <70",
+        "ACEI/ARB not started (if LVEF reduced or HTN/DM)": "ACC/AHA 2021 Chest Pain Guidelines: ACEI/ARB reduce mortality in CAD with reduced EF, HTN, or diabetes",
+        "Lipid panel not checked annually (LDL goal <70)": "ACC/AHA 2021 Chest Pain Guidelines: Annual lipid monitoring ensures LDL <70 mg/dL; intensify therapy if above goal",
+        "Nitroglycerin SL PRN not available": "ACC/AHA 2021 Chest Pain Guidelines: NTG SL 0.4mg PRN for angina; educate on use (up to 3 doses 5 min apart, call 911 if no relief)",
+        "Cardiac rehab not considered post-MI": "ACC/AHA 2021 Chest Pain Guidelines: Cardiac rehabilitation reduces mortality and improves functional capacity post-MI",
+        "Baseline EKG not on file": "ACC/AHA 2021 Chest Pain Guidelines: Baseline EKG aids comparison if chest pain recurs; documents old MI, LVH, conduction abnormalities",
+        
+        // STROKE (8)
+        "Aspirin/antiplatelet therapy not started": "AHA/ASA 2021 Stroke Guidelines: Aspirin 81mg or clopidogrel 75mg daily reduces recurrent stroke risk by 20-25%",
+        "Statin therapy not started (moderate-high intensity)": "AHA/ASA 2021 Stroke Guidelines: High-intensity statin reduces recurrent stroke and CV events regardless of baseline LDL",
+        "BP not controlled <140/90": "AHA/ASA 2021 Stroke Guidelines: BP <140/90 reduces recurrent stroke risk; <130/80 if lacunar stroke or small vessel disease",
+        "Carotid imaging not done post-CVA": "AHA/ASA 2021 Stroke Guidelines: Carotid duplex ultrasound identifies significant stenosis (≥70%); CEA/stenting reduces recurrent stroke",
+        "Atrial fibrillation screening not done": "AHA/ASA 2021 Stroke Guidelines: AFib detected in 25% post-stroke; requires anticoagulation to prevent recurrence",
+        "Dysphagia screening not done": "AHA/ASA 2021 Stroke Guidelines: Dysphagia occurs in 50% of strokes; screening prevents aspiration pneumonia",
+        "PT/OT/ST not referred for functional recovery": "AHA/ASA 2021 Stroke Guidelines: Early rehabilitation maximizes functional recovery; PT/OT/ST improve mobility, ADLs, and communication",
+        "Fall risk assessment not completed": "AMDA 2024 Falls CPG: Stroke patients have 2-3x fall risk due to weakness, neglect, impaired balance",
+        
+        // DEMENTIA (9)
+        "MMSE or MoCA not done annually": "AMDA 2024 Dementia CPG: Annual cognitive testing tracks progression and informs care planning; MMSE or BIMS appropriate in LTC",
+        "Reversible causes not ruled out (B12, TSH, RPR)": "AMDA 2024 Dementia CPG: Screen for B12 deficiency, hypothyroidism, and neurosyphilis as treatable causes of cognitive decline",
+        "Non-pharmacologic BPSD interventions not tried first": "AMDA 2024 Dementia CPG: Non-pharm interventions (music, activities, redirection) should precede antipsychotics for BPSD; safer and often effective",
+        "Cholinesterase inhibitor not started (if Alzheimer's)": "AMDA 2024 Dementia CPG: Donepezil, rivastigmine, or galantamine provide modest cognitive benefit in mild-moderate Alzheimer's",
+        "Anticholinergic medications not avoided (Beers Criteria)": "AGS Beers Criteria 2023 & AMDA 2024: Anticholinergics worsen cognition and increase delirium risk in dementia; avoid diphenhydramine, oxybutynin",
+        "Structured activities/life enrichment not in place": "AMDA 2024 Dementia CPG: Meaningful activities (music, reminiscence, sensory) reduce BPSD and improve quality of life",
+        "Family/staff education on dementia care not documented": "AMDA 2024 Dementia CPG: Caregiver education on dementia progression and management reduces stress and improves patient outcomes",
+        "Safety assessment not done (wandering, elopement)": "AMDA 2024 Dementia CPG: Safety assessment identifies elopement risk; interventions include door alarms, ID bracelets, supervised activities",
+        "Antipsychotic use without documented BPSD/GDR attempts": "CMS F758 Tag & AMDA 2024: Antipsychotics require documented BPSD, failed non-pharm interventions, and quarterly GDR attempts",
+        
+        // DEPRESSION (7)
+        "No antidepressant therapy": "AMDA 2024 Depression CPG: SSRIs (sertraline, citalopram) are first-line for depression in older adults; well-tolerated with low side effects",
+        "Psychiatry consultation not done": "AMDA 2024 Depression CPG: Psychiatric consultation for complex cases, treatment resistance, or suicidality",
+        "CoCM not enrolled": "CMS 2024 CoCM Billing Guidelines: Collaborative Care Management (CoCM) improves depression outcomes through systematic monitoring and stepped care",
+        "Social isolation not addressed with interventions": "AMDA 2024 Depression CPG: Social isolation worsens depression; structured activities and peer interaction improve mood",
+        "PHQ-9 not monitored monthly": "CoCM Protocol 2024: Monthly PHQ-9 tracks treatment response; score ≥10 indicates continued moderate-severe depression",
+        "No individualized activity engagement plan": "AMDA 2024 Depression CPG: Behavioral activation (scheduled pleasant activities) is evidence-based non-pharm treatment for depression",
+        "Suicidal ideation assessment not documented": "AMDA 2024 Depression CPG: Screen for SI at every depression encounter; positive screen requires immediate safety assessment",
+        
+        // FALLS (8)
+        "Vitamin D dose suboptimal (<2000 units daily)": "AMDA 2024 Falls CPG: Vitamin D 2000 units daily reduces fall risk by 20% in older adults; goal level >30 ng/mL",
+        "PT evaluation not done post-falls": "AGS/BGS 2024 Falls Guidelines: PT assessment of gait, balance, and strength identifies modifiable risk factors",
+        "Vision not assessed (>1 year)": "AGS/BGS 2024 Falls Guidelines: Visual impairment doubles fall risk; annual screening and correction reduce falls",
+        "Fall-risk medications not reviewed": "AGS Beers Criteria 2023 & AMDA 2024 Falls CPG: Benzodiazepines, anticholinergics, antipsychotics, and gabapentin significantly increase fall risk",
+        "No assistive device despite balance concerns": "AGS/BGS 2024 Falls Guidelines: Appropriate assistive device (cane, walker) reduces fall risk when balance impaired",
+        "Environmental hazards not addressed": "AGS/BGS 2024 Falls Guidelines: Environmental modifications (remove clutter, adequate lighting, grab bars) prevent 30-50% of falls",
+        "Nighttime toileting schedule not optimized": "AMDA 2024 Falls CPG: Scheduled toileting and bedside commode reduce nighttime falls, the highest-risk period",
+        "Footwear not evaluated for safety": "AGS/BGS 2024 Falls Guidelines: Proper footwear (low heel, non-slip sole, secure fit) reduces fall risk",
+        
+        // POLYPHARMACY (12)
+        "Polypharmacy (≥10 medications) not addressed": "AMDA 2024 Polypharmacy Position Statement & AGS Beers 2023: Polypharmacy (≥10 meds) increases ADR risk, falls, and mortality; systematic deprescribing improves outcomes",
+        "Beers Criteria medications identified, not reviewed": "AGS Beers Criteria 2023: AGS Beers Criteria identify potentially inappropriate medications in older adults; quarterly review recommended",
+        "High anticholinergic burden (ACB score ≥3)": "AGS Beers Criteria 2023: ACB ≥3 increases delirium, falls, and cognitive decline; minimize anticholinergic medications",
+        "Duplicate therapeutic classes identified": "AMDA 2024 Polypharmacy Position Statement: Duplicate therapy (e.g., two SSRIs, two statins) increases ADR risk without added benefit",
+        "Medications without clear indication": "AMDA 2024 Polypharmacy Position Statement: Every medication should have documented indication; discontinue if unclear benefit or original indication resolved",
+        "Renal/hepatic dosing not verified": "AMDA 2024 Polypharmacy Position Statement: Medication dose adjustment for renal/hepatic impairment prevents toxicity and ADRs",
+        "Drug-drug interactions identified, not addressed": "AMDA 2024 Polypharmacy Position Statement: DDIs increase with polypharmacy; use interaction checker and clinical judgment to minimize risk",
+        "PRN medications used regularly without standing order": "AMDA 2024 Polypharmacy Position Statement: Regular PRN use (e.g., daily for >1 month) suggests need for standing order or treatment re-evaluation",
+        "Deprescribing not considered for medications >1 year": "AMDA 2024 Polypharmacy Position Statement: Annual medication review with goals of care alignment; deprescribe when harm exceeds benefit",
+        "Medication reconciliation not done in past 3 months": "CMS QAPI Standards & AMDA 2024: Quarterly medication reconciliation prevents errors and identifies opportunities for optimization",
+        "Pharmacy consult not done (if ≥15 medications)": "AMDA 2024 Polypharmacy Position Statement: Clinical pharmacist consult recommended for complex regimens (≥15 meds) to optimize therapy and reduce ADRs",
+        
+        // IMMUNIZATIONS (8)
+        "Influenza vaccine not current season": "CDC 2024 ACIP Recommendations & AMDA 2024 Immunizations Guide: Annual flu vaccine reduces mortality and hospitalization in older adults; administer September-November",
+        "Pneumococcal (PPSV23) status unknown/not verified": "CDC 2024 ACIP Recommendations: PPSV23 recommended at age 65; protects against 23 pneumococcal serotypes",
+        "Pneumococcal (PCV20) not given per ACIP guidelines": "CDC 2024 ACIP Recommendations: PCV20 single dose OR PCV15 + PPSV23 series recommended for all adults ≥65 per updated ACIP guidelines",
+        "Tetanus status unknown (likely >10 years)": "CDC 2024 ACIP Recommendations: Tdap once (preferred if no prior), then Td booster every 10 years; protects against tetanus, diphtheria, pertussis",
+        "COVID-19 booster not current": "CDC 2024 ACIP Recommendations: Updated COVID vaccine annually reduces severe illness, hospitalization, and death in older adults",
+        "Shingrix not given (age ≥50)": "CDC 2024 ACIP Recommendations: Shingrix 2-dose series (0, 2-6 months) prevents shingles and postherpetic neuralgia; >90% effective in older adults",
+        "RSV vaccine not discussed (age ≥60)": "CDC 2024 ACIP Recommendations: RSV vaccine (single dose) recommended for adults ≥60 using shared decision-making; reduces severe respiratory illness",
+        "Advance directives not reviewed annually": "AMDA 2024 Ethics Position Statement & CMS F578: Annual advance directive review ensures care aligns with patient wishes; document POLST/MOLST status"
+    };
+    
+    // =========================================================================
+    // PLAN & RECOMMENDATIONS REFERENCES (with sources)
+    // =========================================================================
+    const planReferences = {
+        
+        // ========== HEART FAILURE PLANS ==========
+        "Order BNP TODAY (MD/NP)": "AMDA 2024 HF CPG: Elevated BNP confirms volume overload; guides diuretic dosing and predicts hospitalization risk",
+        "Hospital transfer for acute decompensation (MD/NP)": "AMDA 2024 HF CPG: Acute HF decompensation requires IV diuretics, monitoring; SNF lacks resources for acute management",
+        "Increase beta-blocker dose (MD/NP)": "ACC/AHA 2022 HF Guidelines: Target doses: carvedilol 25mg BID or metoprolol succinate 200mg daily; uptitrate slowly every 2 weeks",
+        "Increase ACEI/ARB dose (MD/NP)": "ACC/AHA 2022 HF Guidelines: Target doses: lisinopril 40mg or losartan 150mg daily; monitor K+/Cr 1-2 weeks after change",
+        "Consider spironolactone (MD/NP)": "ACC/AHA 2022 HF Guidelines: Add if EF ≤35% and K+ <5.0, Cr <2.5; start 12.5-25mg daily, recheck labs in 1 week",
+        "Enroll in RPM (RPM Team)": "CMS 2024 RPM Guidelines: Daily weight/BP/HR monitoring enables early intervention before hospitalization",
+        "Daily weights protocol (Nursing)": "AMDA 2024 HF CPG: Document daily AM weights; report >3 lb gain in 24h or >5 lb in 1 week to provider",
+        "Recheck BMP in 2 weeks (MD/NP)": "ACC/AHA 2022 HF Guidelines: Monitor K+/Cr after medication changes; adjust doses if K+ >5.5 or Cr increases >0.3",
+        
+        // ========== CKD PLANS ==========
+        "Order ACR TODAY (MD/NP)": "KDIGO 2024 CKD Guidelines: ACR >30 requires ACEI/ARB intensification; >300 indicates high CV risk",
+        "Sick-day protocol education (Nursing)": "KDIGO 2024 CKD Guidelines: Hold ACEI/ARB, diuretics, metformin, NSAIDs during illness; restart when eating/drinking normally",
+        "Refer nephrology (MD/NP)": "KDIGO 2024 CKD Guidelines: Nephrology needed for: rapid decline (>5 mL/min/year), Stage 4+, refractory issues, or dialysis planning",
+        "Enroll in RPM (RPM)": "CMS 2024 RPM Guidelines: Early AKI detection through daily vitals; medication adherence monitoring",
+        "Monitor labs per stage (MD/NP)": "KDIGO 2024 CKD Guidelines: Stage 3a: q6mo; Stage 3b: q3mo; Stage 4: monthly; Stage 5: per dialysis schedule",
+        "Pharmacist renal dosing review (Pharmacy)": "KDIGO 2024 CKD Guidelines: All medications need dose adjustment for eGFR; prevents drug accumulation and toxicity",
+        
+        // ========== DIABETES PLANS ==========
+        "Treat severe hypoglycemia (<54 mg/dL) (Nursing/MD)": "ADA 2024 Standards of Care: Give 15g fast-acting carbs (juice, glucose tabs); recheck in 15min; if unconscious call 911",
+        "STOP SSI immediately if recurrent hypoglycemia (MD/NP)": "ADA 2024 Standards of Care: SSI causes unpredictable lows; transition to basal insulin prevents hypoglycemia",
+        "Simplify insulin regimen: transition SSI to basal-only or basal-bolus (MD/NP)": "ADA 2024 Standards of Care: Calculate total daily insulin from SSI use; give 50% as basal, 50% as mealtime bolus",
+        "Reduce glucose monitoring to once daily if stable A1c (MD/NP)": "ADA 2024 Standards of Care: If A1c <8.5% x 3 months and no hypoglycemia, daily fasting glucose sufficient",
+        "Deprescribe unnecessary diabetes medications (MD/NP)": "AMDA 2024 DM CPG: If A1c <7.5% on multiple agents, consider stopping sulfonylureas or reducing insulin to prevent lows",
+        "Schedule comprehensive podiatry exam (MD/NP)": "ADA 2024 Standards of Care: Annual monofilament test, pulse check, skin inspection detect neuropathy/PAD before ulcers develop",
+        "Refer ophthalmology for retinal exam (MD/NP)": "ADA 2024 Standards of Care: Dilated fundoscopy detects retinopathy; early laser treatment prevents vision loss",
+        "Consider GLP-1 agonist (semaglutide) if A1c >8% (MD/NP)": "ADA 2024 Standards of Care: Semaglutide 0.25mg weekly, titrate to 1mg; reduces A1c 1-2%, promotes weight loss",
+        "Initiate statin therapy if not on one (MD/NP)": "ADA 2024 Standards of Care: Atorvastatin 40mg or rosuvastatin 20mg nightly; all diabetics age 40-75 need statin for CV protection",
+        "Order urine ACR annually (MD/NP)": "ADA 2024 Standards of Care: ACR >30 triggers ACEI/ARB; >300 adds SGLT2i for renal protection",
+        "Document hypoglycemia protocol (Nursing)": "ADA 2024 Standards of Care: Written protocol: glucose <70 give 15g carbs, recheck 15min; <54 notify MD immediately",
+        "Sick day education (hold metformin during illness) (Nursing)": "ADA 2024 Standards of Care: Stop metformin during vomiting/diarrhea to prevent lactic acidosis; restart when tolerating food",
+        "Recheck A1c in 3 months after regimen change (MD/NP)": "ADA 2024 Standards of Care: A1c reflects 3-month average; reassess after medication adjustments",
+        "Endocrine consult for complex regimen simplification (MD/NP)": "AMDA 2024 DM CPG: Endocrinology helps simplify regimens with 4+ diabetes medications or brittle control",
+        
+        // ========== HYPERTENSION PLANS ==========
+        "HTN emergency management if SBP >180 (MD/NP)": "JNC 8 HTN Guidelines: SBP >180 with symptoms (chest pain, dyspnea, neuro changes) = hypertensive emergency; transfer to ER",
+        "Add 2nd antihypertensive (MD/NP)": "JNC 8 HTN Guidelines: Most need 2+ agents; add ACEI/ARB if CKD/DM, CCB if not; thiazide if not on one",
+        "Increase current dose (MD/NP)": "JNC 8 HTN Guidelines: Titrate to max dose before adding 2nd agent; e.g., lisinopril 20→40mg, amlodipine 5→10mg",
+        "Dietary consult for sodium restriction (Dietary)": "DASH Diet Guidelines: Sodium <2g/day lowers BP 5-10 mmHg; dietitian teaches reading labels, meal planning",
+        "BP monitoring twice weekly (Nursing)": "JNC 8 HTN Guidelines: Measure BP twice weekly; report if SBP >150 or <100, or DBP >90",
+        "Recheck K+/Cr in 2 weeks (MD/NP)": "JNC 8 HTN Guidelines: Monitor after starting/increasing ACEI/ARB or diuretic; adjust if K+ >5.5 or Cr increases",
+        "Orthostatic BP assessment (Nursing)": "AMDA 2024 Falls CPG: Measure BP supine, then after standing 1-3 min; positive if SBP drops >20 or DBP >10 mmHg",
+        
+        // ========== COPD PLANS ==========
+        "Prednisone 40mg x 5 days for exacerbation (MD/NP)": "GOLD 2024 COPD Guidelines: Steroids reduce inflammation, shorten exacerbation recovery; use shortest course needed",
+        "Consider antibiotics if purulent sputum (MD/NP)": "GOLD 2024 COPD Guidelines: If sputum changes color (yellow/green), add azithromycin 500mg x 3d or doxycycline 100mg BID x 5d",
+        "Hospital transfer if respiratory failure (MD/NP)": "GOLD 2024 COPD Guidelines: Transfer if: SpO2 <85% on max O2, altered mental status, accessory muscle use, unable to speak",
+        "Initiate LABA/LAMA combination (MD/NP)": "GOLD 2024 COPD Guidelines: Start tiotropium 18mcg daily + formoterol 12mcg BID, or use combination inhaler",
+        "Add ICS if frequent exacerbations (MD/NP)": "GOLD 2024 COPD Guidelines: If ≥2 exacerbations/year, add ICS (fluticasone/salmeterol or budesonide/formoterol combination)",
+        "Refer pulmonary rehabilitation (MD/NP)": "GOLD 2024 COPD Guidelines: 6-12 week program: exercise training, education, breathing techniques; improves function",
+        "O2 therapy, SpO2 monitoring (Nursing)": "GOLD 2024 COPD Guidelines: Maintain SpO2 88-92% (not higher to avoid CO2 retention); document O2 liter flow and SpO2 daily",
+        "Inhaler technique education (RT)": "GOLD 2024 COPD Guidelines: Verify proper MDI/DPI technique; 30-50% of patients use inhalers incorrectly",
+        "Administer flu/pneumococcal vaccines (Nursing)": "CDC 2024 ACIP & GOLD 2024: Annual flu vaccine (fall); pneumococcal per CDC schedule reduces pneumonia risk",
+        "Document exacerbation action plan (MD/NP)": "GOLD 2024 COPD Guidelines: Written plan: increased SOB/sputum → start prednisone 40mg x 5d and call provider",
+        
+        // ========== CAD PLANS ==========
+        "Chest pain protocol: NTG, EKG, troponin, transfer (MD/NP)": "ACC/AHA 2021 Chest Pain Guidelines: Chest pain: give NTG SL, 12-lead EKG, troponin; if no relief after 3 NTG → 911",
+        "Initiate high-intensity statin (MD/NP)": "ACC/AHA 2021 Chest Pain Guidelines: Start atorvastatin 80mg or rosuvastatin 40mg nightly; target LDL <70 mg/dL",
+        "Start beta-blocker if not on one (MD/NP)": "ACC/AHA 2021 Chest Pain Guidelines: Metoprolol succinate 25mg daily or carvedilol 6.25mg BID; titrate up as tolerated",
+        "Consider ACEI/ARB if indicated (MD/NP)": "ACC/AHA 2021 Chest Pain Guidelines: Start if EF <40%, HTN, or DM; lisinopril 5mg daily, titrate to 40mg",
+        "Ensure NTG SL available at bedside (MD/NP)": "ACC/AHA 2021 Chest Pain Guidelines: NTG 0.4mg SL PRN chest pain; up to 3 doses 5 min apart, call 911 if no relief",
+        "Order lipid panel, target LDL <70 (MD/NP)": "ACC/AHA 2021 Chest Pain Guidelines: Annual lipids; if LDL >70, increase statin intensity or add ezetimibe 10mg",
+        "Nursing education: angina symptoms, NTG (Nursing)": "ACC/AHA 2021 Chest Pain Guidelines: Teach patient to report chest pressure, jaw pain, SOB; demonstrate NTG use",
+        "Baseline EKG if not on file (MD/NP)": "ACC/AHA 2021 Chest Pain Guidelines: 12-lead EKG documents baseline; compare with future EKGs if chest pain recurs",
+        
+        // ========== STROKE PLANS ==========
+        "Hospital transfer for new stroke symptoms (MD/NP)": "AHA/ASA 2021 Stroke Guidelines: New focal weakness, speech changes, facial droop = acute stroke; transfer immediately for tPA window",
+        "Initiate antiplatelet therapy (MD/NP)": "AHA/ASA 2021 Stroke Guidelines: Start aspirin 81mg daily or clopidogrel 75mg daily for secondary stroke prevention",
+        "Start moderate-high intensity statin (MD/NP)": "AHA/ASA 2021 Stroke Guidelines: Atorvastatin 40-80mg nightly regardless of LDL; reduces recurrent stroke risk",
+        "Order carotid duplex ultrasound (MD/NP)": "AHA/ASA 2021 Stroke Guidelines: Identifies carotid stenosis ≥70%; if present, refer vascular surgery for CEA/stenting",
+        "AFib screening (EKG, telemetry) (MD/NP)": "AHA/ASA 2021 Stroke Guidelines: 12-lead EKG; if AFib detected, start anticoagulation (apixaban 5mg BID preferred)",
+        "Dysphagia screening, swallow study if needed (ST)": "AHA/ASA 2021 Stroke Guidelines: Bedside swallow screen; if failed, order modified barium swallow for diet recommendations",
+        "PT/OT/ST for functional recovery (Therapy)": "AHA/ASA 2021 Stroke Guidelines: Intensive rehab: PT for mobility, OT for ADLs, ST for speech/swallow; start early",
+        "Fall risk assessment, mobility aids (PT/Nursing)": "AMDA 2024 Falls CPG: Morse Fall Scale; provide walker, wheelchair as needed; low bed, mat, supervision",
+        "BP monitoring, target <140/90 (Nursing)": "AHA/ASA 2021 Stroke Guidelines: BP twice weekly; report if >150/90; adjust meds to prevent recurrent stroke",
+        
+        // ========== DEMENTIA PLANS ==========
+        "Rule out delirium (infection, medications, metabolic) (MD/NP)": "AMDA 2024 Dementia CPG: Acute confusion = delirium until proven otherwise; check UA, CBC, CMP, medication list",
+        "Rule out reversible causes: B12, TSH, RPR (MD/NP)": "AMDA 2024 Dementia CPG: Check B12 (supplement if <400), TSH (treat if abnormal), RPR (treat if positive)",
+        "Initiate cholinesterase inhibitor (MD/NP)": "AMDA 2024 Dementia CPG: Donepezil 5mg nightly x 4-6 weeks, then increase to 10mg if tolerated",
+        "Reduce anticholinergic burden (MD/NP)": "AGS Beers Criteria 2023: Stop diphenhydramine, oxybutynin, hydroxyzine; switch to non-anticholinergic alternatives",
+        "Non-pharm BPSD interventions first (Activities/Nursing)": "AMDA 2024 Dementia CPG: Try music, activities, redirection, routine BEFORE antipsychotics; document attempts",
+        "Structured activities, meaningful engagement (Activities)": "AMDA 2024 Dementia CPG: Individualized activity plan: music therapy, reminiscence, sensory activities, pet therapy",
+        "Safety assessment, wandering precautions (Nursing)": "AMDA 2024 Dementia CPG: Door alarms, ID bracelet, bed/chair alarms if elopement risk; supervised activities",
+        "Family/staff dementia care education (Social Work)": "AMDA 2024 Dementia CPG: Educate on: communication strategies, behavior management, progression, resources",
+        "Annual cognitive assessment (MMSE/MoCA) (MD/NP)": "AMDA 2024 Dementia CPG: MMSE or BIMS annually to track progression; score decline guides care planning",
+        
+        // ========== DEPRESSION PLANS ==========
+        "Suicide risk assessment - 1:1 observation (Nursing)": "AMDA 2024 Depression CPG: If SI endorsed: 1:1 observation, remove sharps, notify MD immediately, consider psychiatric hospitalization",
+        "Refer psychiatry for SSRI evaluation (MD/NP)": "AMDA 2024 Depression CPG: Psychiatry evaluates for medication; start sertraline 25-50mg or citalopram 10-20mg daily",
+        "Enroll in CoCM (APCM/CoCM)": "CMS 2024 CoCM Billing: Collaborative Care Model: care manager, monthly PHQ-9, psychiatric consultation, stepped care",
+        "Behavioral activation - individualized activity plan (CoCM/Activities)": "AMDA 2024 Depression CPG: Schedule pleasant activities daily (meals in dining room, group activities, outings)",
+        "Monthly PHQ-9 monitoring (CoCM)": "CoCM Protocol 2024: Track PHQ-9 monthly; score ≥10 indicates persistent depression; adjust treatment if no improvement in 8-12 weeks",
+        "Structured social engagement interventions (Activities)": "AMDA 2024 Depression CPG: Daily group activities, dining room meals, 1:1 visits; address social isolation",
+        "Monitor for suicidality, SSRI side effects (Nursing)": "AMDA 2024 Depression CPG: Weekly SI screening first 8 weeks; watch for nausea, agitation, worsening depression",
+        
+        // ========== FALLS PLANS ==========
+        "Post-fall assessment with injury (MD/NP)": "AMDA 2024 Falls CPG: Assess immediately: vitals, neuro exam, X-rays if pain; head CT if anticoagulated or head trauma",
+        "Increase vitamin D to 2000 units daily (MD/NP)": "AMDA 2024 Falls CPG: Vitamin D3 2000 units daily improves muscle strength and balance; goal level >30 ng/mL",
+        "PT evaluation for gait/balance/mobility (PT)": "AGS/BGS 2024 Falls Guidelines: PT assesses: gait, balance, strength, mobility aids; creates individualized fall prevention program",
+        "Ophthalmology vision assessment (Specialists)": "AGS/BGS 2024 Falls Guidelines: Annual vision screening; correct cataracts, refractive errors, glaucoma to reduce fall risk",
+        "Review fall-risk medications (MD/NP)": "AGS Beers Criteria 2023: Taper/stop: benzos, anticholinergics, antipsychotics, gabapentin, sedating meds if benefit unclear",
+        "Environmental safety assessment (Nursing)": "AGS/BGS 2024 Falls Guidelines: Remove clutter, ensure adequate lighting, nightlights, call bell within reach, non-slip mats",
+        "PT recommend appropriate assistive device (PT)": "AGS/BGS 2024 Falls Guidelines: Walker for severe balance issues, cane for mild; teach proper use and sizing",
+        "Implement scheduled toileting (Nursing)": "AMDA 2024 Falls CPG: Q2H toileting schedule during day, bedside commode at night; reduces toileting-related falls",
+        "Evaluate footwear for safety (Nursing)": "AGS/BGS 2024 Falls Guidelines: Proper shoes: low heel (<1 inch), non-slip sole, secure fit (no slippers, no backless shoes)",
+        "Monthly fall risk reassessment (Nursing)": "AMDA 2024 Falls CPG: Morse Fall Scale monthly; adjust interventions based on risk; document all falls",
+        
+        // ========== POLYPHARMACY PLANS ==========
+        "Discontinue medication causing acute adverse event (MD/NP)": "AMDA 2024 Polypharmacy Position Statement: If clear ADR (rash, GI bleed, fall, delirium), stop offending medication immediately",
+        "Address severe drug-drug interaction (MD/NP)": "AMDA 2024 Polypharmacy Position Statement: Separate medications by time, adjust doses, or discontinue one if severe interaction",
+        "Comprehensive medication review by pharmacist (Pharmacy)": "AMDA 2024 Polypharmacy Position Statement: Clinical pharmacist reviews: indications, duplications, interactions, Beers, dosing",
+        "Deprescribing plan for medications without clear benefit (MD/NP)": "AMDA 2024 Polypharmacy Position Statement: Stop medications started >1 year ago if: indication unclear, no benefit, or goals changed",
+        "Reduce anticholinergic burden (MD/NP)": "AGS Beers Criteria 2023: Stop/switch: diphenhydramine, hydroxyzine, oxybutynin, cyclobenzaprine (ACB score goal <3)",
+        "Address Beers Criteria medications (MD/NP)": "AGS Beers Criteria 2023: Review AGS Beers list quarterly; stop/switch PIMs: benzos, PPIs >8 weeks, NSAIDs, antipsychotics",
+        "Taper/discontinue fall-risk medications if benefit unclear (MD/NP)": "AGS Beers Criteria 2023 & AMDA 2024 Falls CPG: Slow taper: benzos (10-25% every 1-2 weeks), gabapentin, sedating meds",
+        "Eliminate duplicate therapeutic classes (MD/NP)": "AMDA 2024 Polypharmacy Position Statement: Stop duplicates: two PPIs, two SSRIs, two statins; causes confusion and increases ADR risk",
+        "Quarterly medication reconciliation (MD/NP)": "CMS QAPI Standards: Review MAR every 3 months: verify accuracy, assess continued need, document indications",
+        "Beers Criteria screening quarterly (Pharmacy)": "AGS Beers Criteria 2023: Pharmacist screens MAR against AGS Beers; reports PIMs to prescriber",
+        "Renal/hepatic dosing verification (Pharmacy)": "AMDA 2024 Polypharmacy Position Statement: Check all medications against eGFR and LFTs; adjust doses for impairment",
+        "Monitor for adverse drug events (Nursing)": "AMDA 2024 Polypharmacy Position Statement: Report new symptoms to MD: falls, confusion, GI symptoms, rash may be medication-related",
+        "Document indication for each medication (MD/NP)": "AMDA 2024 Polypharmacy Position Statement: Every medication needs documented indication and goal; review annually",
+        "Annual comprehensive medication review with goals of care (MD/NP)": "AMDA 2024 Polypharmacy Position Statement: Annual review: align medications with goals of care; deprescribe if focused on comfort",
+        
+        // ========== IMMUNIZATIONS PLANS ==========
+        "None typically urgent for immunizations": "N/A: Immunizations are preventive; no urgent indications",
+        "Administer flu vaccine TODAY (Nursing)": "CDC 2024 ACIP & AMDA 2024 Immunizations Guide: Flu vaccine annually September-November; reduces mortality 50% in older adults",
+        "Verify pneumococcal status, administer if needed (Nursing)": "CDC 2024 ACIP Recommendations: Check immunization record; give PCV20 (single dose) or PCV15 + PPSV23 (1 year later)",
+        "Verify COVID status, administer booster if needed (Nursing)": "CDC 2024 ACIP Recommendations: Annual COVID booster; give latest formulation per CDC recommendations",
+        "Verify tetanus, administer Tdap if overdue (Nursing)": "CDC 2024 ACIP Recommendations: Tdap once (if no prior), then Td every 10 years; protects against tetanus, diphtheria, pertussis",
+        "Discuss/administer Shingrix series (MD/NP)": "CDC 2024 ACIP Recommendations: Shingrix 2 doses (0, 2-6 months); >90% effective preventing shingles and postherpetic neuralgia",
+        "Shared decision-making for RSV vaccine (MD/NP)": "CDC 2024 ACIP Recommendations: RSV vaccine (single dose) for adults ≥60; discuss risks/benefits",
+        "Update immunization record in MAR (Nursing)": "CDC 2024 Vaccine Administration Guidelines: Document all vaccines in MAR with date, lot number, site, VIS provided",
+        "Review advance directives annually (Social Work/MD)": "AMDA 2024 Ethics Position Statement & CMS F578: Annual review: code status, healthcare proxy, POLST/MOLST, hospitalization wishes"
+    };
+    
+    // =========================================================================
+    // FUNCTION TO ADD REFERENCES
+    // =========================================================================
+    function addReference(label, referenceText, className) {
+        // Check if reference already exists
+        if (label.querySelector('.' + className)) {
+            return;
+        }
+        
+        // Create reference div
+        const refDiv = document.createElement('div');
+        refDiv.className = className;
+        refDiv.style.fontSize = '11px';
+        refDiv.style.color = '#666';
+        refDiv.style.fontStyle = 'italic';
+        refDiv.style.marginTop = '2px';
+        refDiv.textContent = referenceText;
+        
+        // Add to label
+        label.appendChild(refDiv);
+    }
+    
+    // =========================================================================
+    // APPLY ALL REFERENCES
+    // =========================================================================
+    const allLabels = document.querySelectorAll('.checkbox-label');
+    
+    allLabels.forEach(function(label) {
+        const labelText = label.childNodes[0].textContent.trim();
+        
+        // Check care gaps references
+        if (gapReferences[labelText]) {
+            addReference(label, gapReferences[labelText], 'clinical-reference');
+        }
+        
+        // Check plan references
+        if (planReferences[labelText]) {
+            addReference(label, planReferences[labelText], 'plan-reference');
+        }
+    });
+    
+    console.log('✅ All clinical references added successfully!');
+    console.log('   - Care gaps: ' + Object.keys(gapReferences).length + ' references');
+    console.log('   - Plans & Recommendations: ' + Object.keys(planReferences).length + ' references');
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Define the standardized clinical status options
+    const standardStatusOptions = [
+        { value: 'uncontrolled', label: 'UNCONTROLLED / UNSTABLE' },
+        { value: 'controlled', label: 'CONTROLLED / STABLE' },
+        { value: 'improving', label: 'IMPROVING' },
+        { value: 'worsening', label: 'WORSENING' },
+        { value: 'acute', label: 'ACUTE EXACERBATION' }
+    ];
+    
+    // Define which modules should get the standardized status
+    // (These are the radio button "name" attributes)
+    const modulesToUpdate = [
+        'hf-status',           // Heart Failure
+        'ckd-status',          // CKD
+        'dm-status',           // Diabetes
+        'htn-status',          // Hypertension
+        'copd-status',         // COPD
+        'cad-status',          // CAD
+        'stroke-status',       // Stroke
+        'dementia-status',     // Dementia
+        'dep-status'           // Depression
+    ];
+    
+    // Function to update a radio group with new options
+    function updateRadioGroup(radioGroupName) {
+        // Find the first radio button with this name to locate the parent container
+        const firstRadio = document.querySelector('input[name="' + radioGroupName + '"]');
+        
+        if (!firstRadio) {
+            console.log('⚠️ Radio group not found: ' + radioGroupName);
+            return;
+        }
+        
+        // Find the parent radio-group div
+        const radioGroup = firstRadio.closest('.radio-group');
+        
+        if (!radioGroup) {
+            console.log('⚠️ Radio group container not found for: ' + radioGroupName);
+            return;
+        }
+        
+        // Clear existing radio items
+        radioGroup.innerHTML = '';
+        
+        // Add new standardized radio items
+        standardStatusOptions.forEach(function(option) {
+            const radioItem = document.createElement('div');
+            radioItem.className = 'radio-item';
+            
+            const radioInput = document.createElement('input');
+            radioInput.type = 'radio';
+            radioInput.name = radioGroupName;
+            radioInput.value = option.value;
+            
+            const radioLabel = document.createElement('label');
+            radioLabel.className = 'radio-label';
+            radioLabel.textContent = option.label;
+            
+            radioItem.appendChild(radioInput);
+            radioItem.appendChild(radioLabel);
+            radioGroup.appendChild(radioItem);
+        });
+        
+        console.log('✅ Updated radio group: ' + radioGroupName);
+    }
+    
+    // Update all specified modules
+    modulesToUpdate.forEach(function(moduleName) {
+        updateRadioGroup(moduleName);
+    });
+    
+    console.log('✅ Clinical status standardization complete!');
+    console.log('   Updated modules: ' + modulesToUpdate.length);
+    console.log('   Skipped: Falls (Risk Status), Polypharmacy (Medication Burden), Immunizations (Current Status)');
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
